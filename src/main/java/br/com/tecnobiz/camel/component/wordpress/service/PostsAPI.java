@@ -3,7 +3,10 @@ package br.com.tecnobiz.camel.component.wordpress.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,7 +20,9 @@ import br.com.tecnobiz.camel.component.wordpress.model.PostOrderBy;
 import br.com.tecnobiz.camel.component.wordpress.model.PostStatus;
 
 /**
- * Describes the Wordpress Posts API
+ * Describes the Wordpress Posts API as on Wordpress API Documentation.
+ * 
+ * @since 0.0.1
  */
 @Path("/")
 public interface PostsAPI {
@@ -56,5 +61,21 @@ public interface PostsAPI {
                       @PathParam("postId") int postId, 
                       @QueryParam("context") PostContext context, 
                       @QueryParam("password") String password);
+    
+    @POST
+    @Path("/v{apiVersion}/posts")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Post create(@PathParam("apiVersion") String apiVersion, Post post);
+    
+    @POST
+    @Path("/v{apiVersion}/posts/{postId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Post update(@PathParam("apiVersion") String apiVersion, @PathParam("postId") int postId, Post post);
+    
+    @DELETE
+    @Path("/v{apiVersion}/posts/{postId}")
+    void delete(@PathParam("apiVersion") String apiVersion, @PathParam("postId") int postId, @QueryParam("force") boolean force);
 
 }

@@ -6,7 +6,7 @@ import static com.google.common.base.Strings.emptyToNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostsAPIAdapter;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostsAdapter;
 
 public class WordpressServiceProvider {
 
@@ -30,7 +30,7 @@ public class WordpressServiceProvider {
     public void init(String wordpressApiUrl) {
         checkNotNull(emptyToNull(wordpressApiUrl), "Please inform the Wordpress API url , eg.: http://myblog.com/wp-json/wp");
         this.wordpressApiUrl = wordpressApiUrl;
-        this.servicePosts = new WordpressServicePostsAPIAdapter(this.wordpressApiUrl);
+        this.servicePosts = new WordpressServicePostsAdapter(this.wordpressApiUrl);
         LOGGER.info("Wordpress Component initialized using base URL: {}", wordpressApiUrl);
     }
 

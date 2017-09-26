@@ -13,7 +13,7 @@ import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
 
-public class WordpressServicePostsAPIAdapterIT {
+public class WordpressServicePostsAdapterIT {
 
     private static WordpressServicePosts servicePosts;
 
