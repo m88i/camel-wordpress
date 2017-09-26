@@ -20,18 +20,19 @@ import br.com.tecnobiz.camel.component.wordpress.model.PostOrderBy;
 import br.com.tecnobiz.camel.component.wordpress.model.PostStatus;
 
 /**
- * Describes the Wordpress Posts API as on Wordpress API Documentation.
+ * Describes the Wordpress Posts API.
  * 
+ * @see <a href="https://developer.wordpress.org/rest-api/reference/posts/">Posts API Reference</a>
  * @since 0.0.1
  */
 @Path("/")
-public interface PostsAPI {
+interface PostsAPI {
 
     //@formatter:off
     @GET
     @Path("/v{apiVersion}/posts")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Post> listPosts(@PathParam("apiVersion") String apiVersion,
+    List<Post> listPosts(@PathParam("apiVersion") String apiVersion,
                          @QueryParam("context") PostContext context, 
                          @QueryParam("page") int page, 
                          @QueryParam("per_page") int perPage, 
@@ -61,21 +62,26 @@ public interface PostsAPI {
                       @PathParam("postId") int postId, 
                       @QueryParam("context") PostContext context, 
                       @QueryParam("password") String password);
-    
+    //@formatter:on
     @POST
     @Path("/v{apiVersion}/posts")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Post create(@PathParam("apiVersion") String apiVersion, Post post);
-    
+
+    //@formatter:off
     @POST
     @Path("/v{apiVersion}/posts/{postId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Post update(@PathParam("apiVersion") String apiVersion, @PathParam("postId") int postId, Post post);
-    
+    Post update(@PathParam("apiVersion") String apiVersion, 
+                @PathParam("postId") int postId, 
+                Post post);
+
     @DELETE
     @Path("/v{apiVersion}/posts/{postId}")
-    void delete(@PathParam("apiVersion") String apiVersion, @PathParam("postId") int postId, @QueryParam("force") boolean force);
+    void delete(@PathParam("apiVersion") String apiVersion, 
+                @PathParam("postId") int postId, 
+                @QueryParam("force") boolean force);
 
 }

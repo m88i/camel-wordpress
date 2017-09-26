@@ -5,18 +5,21 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * The Wordpress rendered content
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WpObject implements Serializable {
+public class WpContent implements Serializable {
 
     private static final long serialVersionUID = -6355688058047458932L;
 
     private String rendered;
-    
+
     @JsonProperty("protected")
     private Boolean protected_;
-    
-    public WpObject() {
-        
+
+    public WpContent() {
+
     }
 
     public String getRendered() {
@@ -33,6 +36,11 @@ public class WpObject implements Serializable {
 
     public void setProtected_(Boolean protected_) {
         this.protected_ = protected_;
+    }
+
+    @Override
+    public String toString() {
+        return this.rendered;
     }
 
 }

@@ -13,7 +13,7 @@ public interface WordpressServicePosts {
      * @param searchCriteria
      * @return a post list with the matched search criteria
      */
-    public List<Post> list(PostSearchCriteria searchCriteria);
+    List<Post> list(PostSearchCriteria searchCriteria);
     
     /**
      * Default endpoint.
@@ -23,7 +23,7 @@ public interface WordpressServicePosts {
      * @param password
      * @return
      */
-    public Post retrievePost(int postId, PostContext context, String password);
+    Post retrievePost(int postId, PostContext context, String password);
     
     /**
      * Call to posts without password
@@ -32,7 +32,7 @@ public interface WordpressServicePosts {
      * @param context
      * @return
      */
-    public Post retrievePost(int postId, PostContext context);
+    Post retrievePost(int postId, PostContext context);
     
     /**
      * Posts in view mode, without password.
@@ -40,7 +40,7 @@ public interface WordpressServicePosts {
      * @param postId
      * @return
      */
-    public Post retrievePost(int postId);
+    Post retrievePost(int postId);
     
     /**
      * Creates a new post
@@ -48,7 +48,7 @@ public interface WordpressServicePosts {
      * @param post
      * @return
      */
-    public Post create(Post post);
+    Post create(Post post);
     
     /**
      * Updates a post. The {@link Post#getId()} is mandatory
@@ -56,7 +56,7 @@ public interface WordpressServicePosts {
      * @param post
      * @return
      */
-    public Post update(Post post);
+    Post update(Post post);
     
     /**
      * Deletes a post.
@@ -64,6 +64,6 @@ public interface WordpressServicePosts {
      * @param id
      * @param force true to send straight to the heaven
      */
-    public void delete(int id, boolean force);
+    void delete(int id, boolean force);
 
 }

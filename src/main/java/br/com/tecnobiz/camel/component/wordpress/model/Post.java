@@ -4,7 +4,6 @@ import static com.google.common.base.MoreObjects.toStringHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,41 +13,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents a Wordpress Post.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Post implements Serializable {
+public class Post extends PostObject implements Serializable {
 
     private static final long serialVersionUID = -2077181715632668792L;
 
-    private Date date;
-
-    @JsonProperty("date_gmt")
-    private Date dateGmt;
-
-    private WpObject guid;
+    private WpContent guid;
 
     private Integer id;
 
+    private WpContent title;
+
+    private WpContent content;
+
+    private WpContent excerpt;
+
     private String link;
-
-    private Date modified;
-
-    @JsonProperty("modified_gmt")
-    private Date modifiedGmt;
-
-    private String slug;
 
     private PostStatus status;
 
     private String type;
 
     private String password;
-
-    private WpObject title;
-
-    private WpObject content;
-
-    private Integer author;
-
-    private WpObject excerpt;
 
     @JsonProperty("featured_media")
     private Integer featuredMedia;
@@ -61,7 +46,7 @@ public class Post implements Serializable {
 
     private Format format;
 
-    private List<WpObject> meta;
+    private List<WpContent> meta;
 
     private Boolean stick;
 
@@ -79,27 +64,35 @@ public class Post implements Serializable {
         this.tags = new ArrayList<>();
     }
 
-    public Date getDate() {
-        return date;
+    public WpContent getTitle() {
+        return title;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTitle(WpContent title) {
+        this.title = title;
     }
 
-    public Date getDateGmt() {
-        return dateGmt;
+    public WpContent getContent() {
+        return content;
     }
 
-    public void setDateGmt(Date dateGmt) {
-        this.dateGmt = dateGmt;
+    public void setContent(WpContent content) {
+        this.content = content;
     }
 
-    public WpObject getGuid() {
+    public WpContent getExcerpt() {
+        return excerpt;
+    }
+
+    public void setExcerpt(WpContent excerpt) {
+        this.excerpt = excerpt;
+    }
+
+    public WpContent getGuid() {
         return guid;
     }
 
-    public void setGuid(WpObject guid) {
+    public void setGuid(WpContent guid) {
         this.guid = guid;
     }
 
@@ -117,30 +110,6 @@ public class Post implements Serializable {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public Date getModified() {
-        return modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
-    public Date getModifiedGmt() {
-        return modifiedGmt;
-    }
-
-    public void setModifiedGmt(Date modifiedGmt) {
-        this.modifiedGmt = modifiedGmt;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
     }
 
     public PostStatus getStatus() {
@@ -165,38 +134,6 @@ public class Post implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public WpObject getTitle() {
-        return title;
-    }
-
-    public void setTitle(WpObject title) {
-        this.title = title;
-    }
-
-    public WpObject getContent() {
-        return content;
-    }
-
-    public void setContent(WpObject content) {
-        this.content = content;
-    }
-
-    public Integer getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Integer author) {
-        this.author = author;
-    }
-
-    public WpObject getExcerpt() {
-        return excerpt;
-    }
-
-    public void setExcerpt(WpObject excerpt) {
-        this.excerpt = excerpt;
     }
 
     public Integer getFeaturedMedia() {
@@ -231,11 +168,11 @@ public class Post implements Serializable {
         this.format = format;
     }
 
-    public List<WpObject> getMeta() {
+    public List<WpContent> getMeta() {
         return meta;
     }
 
-    public void setMeta(List<WpObject> meta) {
+    public void setMeta(List<WpContent> meta) {
         this.meta = meta;
     }
 
@@ -281,11 +218,7 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return toStringHelper(this)
-            .add("PostID", this.id)
-            .add("Link", this.link)
-            .add("Author", this.author)
-            .toString();
+        return toStringHelper(this).add("PostID", this.getId()).add("Status", this.status).addValue(this.getTitle()).toString();
     }
 
 }
