@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service;
+package br.com.tecnobiz.camel.component.wordpress.service.impl;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -16,10 +16,11 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressConstants;
-import br.com.tecnobiz.camel.component.wordpress.WordpressServicePosts;
+import br.com.tecnobiz.camel.component.wordpress.api.PostsAPI;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
 import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
 import br.com.tecnobiz.camel.component.wordpress.model.PostSearchCriteria;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
 
 /**
  * The {@link WordpressServicePosts} implementation. Aggregates the

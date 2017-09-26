@@ -6,7 +6,8 @@ import static com.google.common.base.Strings.emptyToNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostsAdapter;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
+import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServicePostsAdapter;
 
 public class WordpressServiceProvider {
 

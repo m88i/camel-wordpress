@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service;
+package br.com.tecnobiz.camel.component.wordpress.api;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.PostRevision;
  * @since 0.0.1
  */
 @Path("/")
-interface PostRevisionsAPI {
+public interface PostRevisionsAPI {
 
     //@formatter:off
     @GET
@@ -43,7 +43,7 @@ interface PostRevisionsAPI {
     @DELETE
     @Path("/v{apiVersion}/posts/{postId}/revisions/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    List<PostRevision> delete(@PathParam("apiVersion") String apiVersion, 
+    void delete(@PathParam("apiVersion") String apiVersion, 
                             @PathParam("postId") int postId,
                             @PathParam("id") int revisionId);     
 

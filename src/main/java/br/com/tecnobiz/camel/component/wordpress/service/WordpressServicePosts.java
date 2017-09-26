@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress;
+package br.com.tecnobiz.camel.component.wordpress.service;
 
 import java.util.List;
 

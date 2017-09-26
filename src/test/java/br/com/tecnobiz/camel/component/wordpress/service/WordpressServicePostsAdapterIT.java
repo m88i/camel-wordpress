@@ -11,7 +11,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.tecnobiz.camel.component.wordpress.WordpressServicePosts;
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;

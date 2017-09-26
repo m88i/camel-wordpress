@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service;
+package br.com.tecnobiz.camel.component.wordpress.api;
 
 import java.util.Date;
 import java.util.List;
@@ -26,7 +26,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.PostStatus;
  * @since 0.0.1
  */
 @Path("/")
-interface PostsAPI {
+public interface PostsAPI {
 
     //@formatter:off
     @GET
