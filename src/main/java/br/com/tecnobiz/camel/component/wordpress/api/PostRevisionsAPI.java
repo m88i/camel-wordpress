@@ -35,7 +35,7 @@ public interface PostRevisionsAPI {
     @GET
     @Path("/v{apiVersion}/posts/{postId}/revisions/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    List<PostRevision> retrieveRevision(@PathParam("apiVersion") String apiVersion, 
+    PostRevision retrieveRevision(@PathParam("apiVersion") String apiVersion, 
                             @PathParam("postId") int postId,
                             @PathParam("id") int revisionId,
                             @QueryParam("context") PostContext context); 

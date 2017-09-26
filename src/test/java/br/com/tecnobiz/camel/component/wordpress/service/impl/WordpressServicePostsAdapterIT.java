@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service;
+package br.com.tecnobiz.camel.component.wordpress.service.impl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -15,6 +15,7 @@ import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
 import br.com.tecnobiz.camel.component.wordpress.model.PostSearchCriteria;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
 
 public class WordpressServicePostsAdapterIT {
 

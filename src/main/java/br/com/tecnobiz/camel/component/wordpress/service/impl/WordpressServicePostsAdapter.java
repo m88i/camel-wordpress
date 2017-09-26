@@ -3,17 +3,11 @@ package br.com.tecnobiz.camel.component.wordpress.service.impl;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Collections;
 import java.util.List;
 
-import org.apache.cxf.interceptor.LoggingInInterceptor;
-import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressConstants;
 import br.com.tecnobiz.camel.component.wordpress.api.PostsAPI;
@@ -29,23 +23,31 @@ import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
  * 
  * @since 0.0.1
  */
-public class WordpressServicePostsAdapter implements WordpressServicePosts {
+public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapter<PostsAPI> implements WordpressServicePosts {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WordpressServicePostsAdapter.class);
 
     private PostsAPI api;
 
     public WordpressServicePostsAdapter(final String wordpressUrl) {
-        this.api = JAXRSClientFactory.create(wordpressUrl, PostsAPI.class, Collections.singletonList(new JacksonJsonProvider()));
-        /*
-         * TODO: aggregate a configuration object to customize the JAXRS
-         * behavior, eg.: adding handlers or interceptors
-         */
-        WebClient.getConfig(this.api).getInInterceptors().add(new LoggingInInterceptor());
-        WebClient.getConfig(this.api).getOutInterceptors().add(new LoggingOutInterceptor());
-        LOGGER.info("******* Posts API initialized *********");
+        super(wordpressUrl);
     }
 
+    @Override
+    protected Class<PostsAPI> getType() {
+        return PostsAPI.class;
+    }
+    
+    @Override
+    protected PostsAPI getApi() {
+        return this.api;
+    }
+    
+    @Override
+    protected void setApi(PostsAPI api) {
+        this.api = api;
+    }
+    
     @Override
     public List<Post> list(PostSearchCriteria criteria) {
         LOGGER.debug("Calling list posts: searchCriteria {}", criteria);
