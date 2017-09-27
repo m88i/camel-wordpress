@@ -1,5 +1,6 @@
 package br.com.tecnobiz.camel.component.wordpress.service.impl;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.emptyToNull;
 
@@ -16,7 +17,7 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressServiceA
 
     private CategoriesAPI api;
 
-    WordpressServiceCategoriesAdapter(String wordpressUrl) {
+    public WordpressServiceCategoriesAdapter(String wordpressUrl) {
         super(wordpressUrl);
     }
 
@@ -44,26 +45,41 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressServiceA
 
     @Override
     public void delete(int categoryId, boolean force) {
-        // TODO Auto-generated method stub
-
+        checkArgument(categoryId > 0, "Please define a category");
+        this.api.delete(WordpressConstants.API_VERSION, categoryId, force);
     }
 
+    //@formatter:off
     @Override
     public List<Category> list(CategorySearchCriteria criteria) {
-        // TODO Auto-generated method stub
-        return null;
+        checkNotNull(criteria, "The search criteria must be defined");
+        return this.api.list(WordpressConstants.API_VERSION, 
+                             criteria.getContext(), 
+                             criteria.getPage(), 
+                             criteria.getPerPage(), 
+                             criteria.getSearch(), 
+                             criteria.getExclude(), 
+                             criteria.getInclude(),
+                             criteria.getOrder(), 
+                             criteria.getOrderBy(), 
+                             criteria.isHideEmpty(), 
+                             criteria.getParent(), 
+                             criteria.getPostId(), 
+                             criteria.getSlug());
     }
+    //@formatter:on
 
     @Override
     public Category retrieve(int categoryId, Context context) {
-        // TODO Auto-generated method stub
-        return null;
+        checkArgument(categoryId > 0, "Please define a category");
+        return api.retrieve(WordpressConstants.API_VERSION, categoryId, context);
     }
 
     @Override
     public Category update(int categoryId, Category category) {
-        // TODO Auto-generated method stub
-        return null;
+        checkArgument(categoryId > 0, "Please define a category");
+        checkNotNull(category, "Which category are you trying to update?");
+        return api.update(WordpressConstants.API_VERSION, categoryId, category);
     }
 
 }

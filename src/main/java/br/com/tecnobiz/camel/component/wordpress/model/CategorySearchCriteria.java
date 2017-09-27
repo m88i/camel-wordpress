@@ -7,6 +7,7 @@ public class CategorySearchCriteria extends SearchCriteria {
     private Integer parent;
     private Integer postId;
     private String slug;
+    private Context context;
     
     public CategorySearchCriteria() {
 
@@ -52,5 +53,12 @@ public class CategorySearchCriteria extends SearchCriteria {
         this.slug = slug;
     }
     
+    public Context getContext() {
+        return context;
+    }
+    
+    public void setContext(Context context) {
+        this.context = context;
+    }
         
 }
