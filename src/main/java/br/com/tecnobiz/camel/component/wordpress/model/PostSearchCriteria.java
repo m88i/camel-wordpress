@@ -9,8 +9,6 @@ public class PostSearchCriteria extends SearchCriteria {
     private Date before;
     private List<Integer> author;
     private List<Integer> authorExclude;
-    private List<Integer> exclude;
-    private List<Integer> include;
     private List<Integer> offset;
     private PostOrderBy orderBy;
     private List<String> slug;
@@ -20,7 +18,7 @@ public class PostSearchCriteria extends SearchCriteria {
     private List<String> tags;
     private List<String> tagsExclude;
     private Boolean stick;
-    private PostContext context;
+    private Context context;
 
     public Date getAfter() {
         return after;
@@ -52,22 +50,6 @@ public class PostSearchCriteria extends SearchCriteria {
 
     public void setAuthorExclude(List<Integer> authorExclude) {
         this.authorExclude = authorExclude;
-    }
-
-    public List<Integer> getExclude() {
-        return exclude;
-    }
-
-    public void setExclude(List<Integer> exclude) {
-        this.exclude = exclude;
-    }
-
-    public List<Integer> getInclude() {
-        return include;
-    }
-
-    public void setInclude(List<Integer> include) {
-        this.include = include;
     }
 
     public List<Integer> getOffset() {
@@ -142,11 +124,11 @@ public class PostSearchCriteria extends SearchCriteria {
         this.stick = stick;
     }
 
-    public PostContext getContext() {
+    public Context getContext() {
         return context;
     }
 
-    public void setContext(PostContext context) {
+    public void setContext(Context context) {
         this.context = context;
     }
 

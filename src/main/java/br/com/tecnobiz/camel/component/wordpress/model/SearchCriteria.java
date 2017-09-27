@@ -2,30 +2,35 @@ package br.com.tecnobiz.camel.component.wordpress.model;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 
+import java.util.List;
+
 public class SearchCriteria {
 
-    private int page;
-    private int perPage;
+    private Integer page;
+    private Integer perPage;
     private String search;
     private Order order;
+    private List<Integer> exclude;
+    private List<Integer> include;
+    
 
     public SearchCriteria() {
 
     }
 
-    public int getPage() {
+    public Integer getPage() {
         return page;
     }
 
-    public void setPage(int page) {
+    public void setPage(Integer page) {
         this.page = page;
     }
 
-    public int getPerPage() {
+    public Integer getPerPage() {
         return perPage;
     }
 
-    public void setPerPage(int perPage) {
+    public void setPerPage(Integer perPage) {
         this.perPage = perPage;
     }
 
@@ -43,6 +48,22 @@ public class SearchCriteria {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+    
+    public List<Integer> getExclude() {
+        return exclude;
+    }
+
+    public void setExclude(List<Integer> exclude) {
+        this.exclude = exclude;
+    }
+
+    public List<Integer> getInclude() {
+        return include;
+    }
+
+    public void setInclude(List<Integer> include) {
+        this.include = include;
     }
 
     @Override

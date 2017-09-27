@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import br.com.tecnobiz.camel.component.wordpress.model.Order;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
-import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
+import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostOrderBy;
 import br.com.tecnobiz.camel.component.wordpress.model.PostStatus;
 
@@ -33,9 +33,9 @@ public interface PostsAPI {
     @Path("/v{apiVersion}/posts")
     @Produces(MediaType.APPLICATION_JSON)
     List<Post> listPosts(@PathParam("apiVersion") String apiVersion,
-                         @QueryParam("context") PostContext context, 
-                         @QueryParam("page") int page, 
-                         @QueryParam("per_page") int perPage, 
+                         @QueryParam("context") Context context, 
+                         @QueryParam("page") Integer page, 
+                         @QueryParam("per_page") Integer perPage, 
                          @QueryParam("search") String search, 
                          @QueryParam("after") Date after, 
                          @QueryParam("author") List<Integer> author,
@@ -60,7 +60,7 @@ public interface PostsAPI {
     @Produces(MediaType.APPLICATION_JSON)
     Post retrievePost(@PathParam("apiVersion") String apiVersion, 
                       @PathParam("postId") int postId, 
-                      @QueryParam("context") PostContext context, 
+                      @QueryParam("context") Context context, 
                       @QueryParam("password") String password);
     //@formatter:on
     @POST

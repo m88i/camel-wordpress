@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressConstants;
 import br.com.tecnobiz.camel.component.wordpress.api.PostRevisionsAPI;
-import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
+import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostRevision;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostRevision;
 
@@ -41,14 +41,14 @@ public class WordpressSevicePostRevisionAdapter extends AbstractWordpressService
     }
 
     @Override
-    public PostRevision retrieve(int postId, int revisionId, PostContext context) {
+    public PostRevision retrieve(int postId, int revisionId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
         checkArgument(revisionId > 0, "Please define a revision id");
         return this.api.retrieveRevision(WordpressConstants.API_VERSION, postId, revisionId, context);
     }
 
     @Override
-    public List<PostRevision> list(int postId, PostContext context) {
+    public List<PostRevision> list(int postId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
         return this.api.list(WordpressConstants.API_VERSION, postId, context);
     }

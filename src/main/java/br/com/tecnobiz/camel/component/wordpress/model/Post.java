@@ -17,15 +17,15 @@ public class Post extends PostObject implements Serializable {
 
     private static final long serialVersionUID = -2077181715632668792L;
 
-    private WpContent guid;
+    private WPContent guid;
 
     private Integer id;
 
-    private WpContent title;
+    private WPContent title;
 
-    private WpContent content;
+    private WPContent content;
 
-    private WpContent excerpt;
+    private WPContent excerpt;
 
     private String link;
 
@@ -46,7 +46,7 @@ public class Post extends PostObject implements Serializable {
 
     private Format format;
 
-    private List<WpContent> meta;
+    private List<WPContent> meta;
 
     private Boolean stick;
 
@@ -64,35 +64,35 @@ public class Post extends PostObject implements Serializable {
         this.tags = new ArrayList<>();
     }
 
-    public WpContent getTitle() {
+    public WPContent getTitle() {
         return title;
     }
 
-    public void setTitle(WpContent title) {
+    public void setTitle(WPContent title) {
         this.title = title;
     }
 
-    public WpContent getContent() {
+    public WPContent getContent() {
         return content;
     }
 
-    public void setContent(WpContent content) {
+    public void setContent(WPContent content) {
         this.content = content;
     }
 
-    public WpContent getExcerpt() {
+    public WPContent getExcerpt() {
         return excerpt;
     }
 
-    public void setExcerpt(WpContent excerpt) {
+    public void setExcerpt(WPContent excerpt) {
         this.excerpt = excerpt;
     }
 
-    public WpContent getGuid() {
+    public WPContent getGuid() {
         return guid;
     }
 
-    public void setGuid(WpContent guid) {
+    public void setGuid(WPContent guid) {
         this.guid = guid;
     }
 
@@ -168,11 +168,11 @@ public class Post extends PostObject implements Serializable {
         this.format = format;
     }
 
-    public List<WpContent> getMeta() {
+    public List<WPContent> getMeta() {
         return meta;
     }
 
-    public void setMeta(List<WpContent> meta) {
+    public void setMeta(List<WPContent> meta) {
         this.meta = meta;
     }
 

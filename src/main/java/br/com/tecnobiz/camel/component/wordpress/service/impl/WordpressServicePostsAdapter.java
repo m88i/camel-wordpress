@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import br.com.tecnobiz.camel.component.wordpress.WordpressConstants;
 import br.com.tecnobiz.camel.component.wordpress.api.PostsAPI;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
-import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
+import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostSearchCriteria;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
 
@@ -59,7 +59,7 @@ public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapte
     }
 
     @Override
-    public Post retrievePost(int postId, PostContext context, String password) {
+    public Post retrievePost(int postId, Context context, String password) {
         LOGGER.debug("Calling retrievePosts: postId {};  postContext: {}", postId, context);
         checkArgument(postId > 0, "Please provide a non zero post id");
         checkNotNull(context, "Provide a post context");
@@ -67,13 +67,13 @@ public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapte
     }
 
     @Override
-    public Post retrievePost(int postId, PostContext context) {
+    public Post retrievePost(int postId, Context context) {
         return this.retrievePost(postId, context, "");
     }
 
     @Override
     public Post retrievePost(int postId) {
-        return this.retrievePost(postId, PostContext.view, "");
+        return this.retrievePost(postId, Context.view, "");
     }
 
     @Override

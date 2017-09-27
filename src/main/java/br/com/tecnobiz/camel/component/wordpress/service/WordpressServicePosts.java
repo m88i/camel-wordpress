@@ -3,7 +3,7 @@ package br.com.tecnobiz.camel.component.wordpress.service;
 import java.util.List;
 
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
-import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
+import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostSearchCriteria;
 
 public interface WordpressServicePosts {
@@ -23,7 +23,7 @@ public interface WordpressServicePosts {
      * @param password
      * @return
      */
-    Post retrievePost(int postId, PostContext context, String password);
+    Post retrievePost(int postId, Context context, String password);
     
     /**
      * Call to posts without password
@@ -32,7 +32,7 @@ public interface WordpressServicePosts {
      * @param context
      * @return
      */
-    Post retrievePost(int postId, PostContext context);
+    Post retrievePost(int postId, Context context);
     
     /**
      * Posts in view mode, without password.

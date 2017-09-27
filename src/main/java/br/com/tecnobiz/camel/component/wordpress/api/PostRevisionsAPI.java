@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import br.com.tecnobiz.camel.component.wordpress.model.PostContext;
+import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostRevision;
 
 /**
@@ -30,7 +30,7 @@ public interface PostRevisionsAPI {
     @Produces(MediaType.APPLICATION_JSON)
     List<PostRevision> list(@PathParam("apiVersion") String apiVersion, 
                             @PathParam("postId") int postId, 
-                            @QueryParam("context") PostContext context);
+                            @QueryParam("context") Context context);
     
     @GET
     @Path("/v{apiVersion}/posts/{postId}/revisions/{id}")
@@ -38,7 +38,7 @@ public interface PostRevisionsAPI {
     PostRevision retrieveRevision(@PathParam("apiVersion") String apiVersion, 
                             @PathParam("postId") int postId,
                             @PathParam("id") int revisionId,
-                            @QueryParam("context") PostContext context); 
+                            @QueryParam("context") Context context); 
     
     @DELETE
     @Path("/v{apiVersion}/posts/{postId}/revisions/{id}")
