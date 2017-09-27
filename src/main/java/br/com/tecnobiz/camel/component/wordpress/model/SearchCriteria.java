@@ -4,7 +4,7 @@ import static com.google.common.base.MoreObjects.toStringHelper;
 
 import java.util.List;
 
-public class SearchCriteria {
+public abstract class SearchCriteria {
 
     private Integer page;
     private Integer perPage;

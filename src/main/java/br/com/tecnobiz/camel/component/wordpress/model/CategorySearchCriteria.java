@@ -1,14 +1,10 @@
 package br.com.tecnobiz.camel.component.wordpress.model;
 
-public class CategorySearchCriteria extends SearchCriteria {
+public class CategorySearchCriteria extends ClassifierSearchCriteria {
 
     private CategoryOrderBy orderBy;
-    private boolean hideEmpty;
     private Integer parent;
-    private Integer postId;
-    private String slug;
-    private Context context;
-    
+
     public CategorySearchCriteria() {
 
     }
@@ -21,14 +17,6 @@ public class CategorySearchCriteria extends SearchCriteria {
         this.orderBy = orderBy;
     }
 
-    public boolean isHideEmpty() {
-        return hideEmpty;
-    }
-
-    public void setHideEmpty(boolean hideEmpty) {
-        this.hideEmpty = hideEmpty;
-    }
-
     public Integer getParent() {
         return parent;
     }
@@ -37,28 +25,4 @@ public class CategorySearchCriteria extends SearchCriteria {
         this.parent = parent;
     }
 
-    public Integer getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-    
-    public Context getContext() {
-        return context;
-    }
-    
-    public void setContext(Context context) {
-        this.context = context;
-    }
-        
 }

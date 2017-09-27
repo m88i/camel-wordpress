@@ -18,7 +18,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.Category;
 import br.com.tecnobiz.camel.component.wordpress.model.CategorySearchCriteria;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceCategories;
 
-public class WordpressServiceCategoryAdapterIT {
+public class WordpressServiceCategoriesAdapterIT {
 
     private static WordpressServiceCategories serviceCategories;
 
