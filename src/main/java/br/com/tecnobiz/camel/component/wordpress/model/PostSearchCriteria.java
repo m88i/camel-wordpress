@@ -1,64 +1,15 @@
 package br.com.tecnobiz.camel.component.wordpress.model;
 
-import java.util.Date;
 import java.util.List;
 
-public class PostSearchCriteria extends SearchCriteria {
+public class PostSearchCriteria extends PublishableSearchCriteria {
 
-    private Date after;
-    private Date before;
-    private List<Integer> author;
-    private List<Integer> authorExclude;
-    private List<Integer> offset;
-    private PostOrderBy orderBy;
-    private List<String> slug;
-    private PublishableStatus status;
     private List<String> categories;
     private List<String> categoriesExclude;
     private List<String> tags;
     private List<String> tagsExclude;
     private Boolean stick;
-    private Context context;
-
-    public Date getAfter() {
-        return after;
-    }
-
-    public void setAfter(Date after) {
-        this.after = after;
-    }
-
-    public Date getBefore() {
-        return before;
-    }
-
-    public void setBefore(Date before) {
-        this.before = before;
-    }
-
-    public List<Integer> getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(List<Integer> author) {
-        this.author = author;
-    }
-
-    public List<Integer> getAuthorExclude() {
-        return authorExclude;
-    }
-
-    public void setAuthorExclude(List<Integer> authorExclude) {
-        this.authorExclude = authorExclude;
-    }
-
-    public List<Integer> getOffset() {
-        return offset;
-    }
-
-    public void setOffset(List<Integer> offset) {
-        this.offset = offset;
-    }
+    private PostOrderBy orderBy;
 
     public PostOrderBy getOrderBy() {
         return orderBy;
@@ -66,22 +17,6 @@ public class PostSearchCriteria extends SearchCriteria {
 
     public void setOrderBy(PostOrderBy orderBy) {
         this.orderBy = orderBy;
-    }
-
-    public List<String> getSlug() {
-        return slug;
-    }
-
-    public void setSlug(List<String> slug) {
-        this.slug = slug;
-    }
-
-    public PublishableStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(PublishableStatus status) {
-        this.status = status;
     }
 
     public List<String> getCategories() {
@@ -122,14 +57,6 @@ public class PostSearchCriteria extends SearchCriteria {
 
     public void setStick(Boolean stick) {
         this.stick = stick;
-    }
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
 }

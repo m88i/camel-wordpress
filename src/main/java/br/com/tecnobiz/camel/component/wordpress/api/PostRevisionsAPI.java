@@ -22,7 +22,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.PostRevision;
  * @since 0.0.1
  */
 @Path("/")
-public interface PostRevisionsAPI {
+public interface PostRevisionsAPI extends WordpressAPI<PostRevision> {
 
     //@formatter:off
     @GET

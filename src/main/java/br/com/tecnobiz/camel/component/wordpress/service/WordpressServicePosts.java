@@ -56,7 +56,7 @@ public interface WordpressServicePosts {
      * @param post
      * @return
      */
-    Post update(Post post);
+    Post update(int id, Post post);
     
     /**
      * Deletes a post.

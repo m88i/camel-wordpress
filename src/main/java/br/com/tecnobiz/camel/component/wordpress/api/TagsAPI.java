@@ -24,7 +24,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.TagOrderBy;
  * @since 0.0.1
  */
 @Path("/")
-public interface TagsAPI {
+public interface TagsAPI extends WordpressAPI<Tag> {
 
     //@formatter:off
     @GET

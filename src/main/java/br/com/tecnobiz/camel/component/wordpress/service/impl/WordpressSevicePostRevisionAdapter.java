@@ -19,7 +19,7 @@ public class WordpressSevicePostRevisionAdapter extends AbstractWordpressService
     private PostRevisionsAPI api;
 
     @Override
-    protected Class<PostRevisionsAPI> getType() {
+    protected Class<PostRevisionsAPI> getApiType() {
         return PostRevisionsAPI.class;
     }
 

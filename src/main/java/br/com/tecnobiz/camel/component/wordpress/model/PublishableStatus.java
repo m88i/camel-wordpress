@@ -12,7 +12,12 @@ public enum PublishableStatus {
     draft, 
     pending, 
     @JsonProperty("private")
-    private_;
+    private_,
+    trash,
+    @JsonProperty("auto-draft")
+    auto_draft,
+    inherit,
+    any;
     //@formatter:on
 
     /***
@@ -26,6 +31,9 @@ public enum PublishableStatus {
         arg = "".concat(arg).toLowerCase();
         if (!arg.isEmpty() && arg.startsWith("private")) {
             return private_;
+        }
+        if (!arg.isEmpty() && arg.startsWith("auto")) {
+            return auto_draft;
         }
 
         return valueOf(arg);

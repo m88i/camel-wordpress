@@ -26,7 +26,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.Order;
  * @since 0.0.1
  */
 @Path("/")
-public interface CategoriesAPI {
+public interface CategoriesAPI extends WordpressAPI<Category> {
     
     //@formatter:off
     @GET
@@ -69,7 +69,7 @@ public interface CategoriesAPI {
     
     @DELETE
     @Path("/v{apiVersion}/categories/{id}")
-    Category delete(@PathParam("apiVersion") String apiVersion, 
+    void delete(@PathParam("apiVersion") String apiVersion, 
                     @PathParam("id") int categoryId,
                     @QueryParam("force") boolean force);
        

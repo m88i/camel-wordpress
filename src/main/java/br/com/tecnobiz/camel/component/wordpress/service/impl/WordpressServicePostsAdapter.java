@@ -23,7 +23,7 @@ import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
  * 
  * @since 0.0.1
  */
-public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapter<PostsAPI> implements WordpressServicePosts {
+public class WordpressServicePostsAdapter extends AbstractWordpressCrudServiceAdapter<PostsAPI, Post> implements WordpressServicePosts {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WordpressServicePostsAdapter.class);
 
@@ -34,28 +34,28 @@ public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapte
     }
 
     @Override
-    protected Class<PostsAPI> getType() {
+    protected Class<PostsAPI> getApiType() {
         return PostsAPI.class;
     }
-    
+
     @Override
     protected PostsAPI getApi() {
         return this.api;
     }
-    
+
     @Override
     protected void setApi(PostsAPI api) {
         this.api = api;
     }
-    
+
     @Override
     public List<Post> list(PostSearchCriteria criteria) {
         LOGGER.debug("Calling list posts: searchCriteria {}", criteria);
         checkNotNull(criteria, "Please provide a search criteria");
-        return api.listPosts(WordpressConstants.API_VERSION, criteria.getContext(), criteria.getPage(), criteria.getPerPage(), criteria.getSearch(), criteria.getAfter(),
-                             criteria.getAuthor(), criteria.getAuthorExclude(), criteria.getBefore(), criteria.getExclude(), criteria.getInclude(), criteria.getOffset(),
-                             criteria.getOrder(), criteria.getOrderBy(), criteria.getSlug(), criteria.getStatus(), criteria.getCategories(), criteria.getCategoriesExclude(),
-                             criteria.getTags(), criteria.getTagsExclude(), criteria.getStick());
+        return api.list(WordpressConstants.API_VERSION, criteria.getContext(), criteria.getPage(), criteria.getPerPage(), criteria.getSearch(), criteria.getAfter(),
+                        criteria.getAuthor(), criteria.getAuthorExclude(), criteria.getBefore(), criteria.getExclude(), criteria.getInclude(), criteria.getOffset(),
+                        criteria.getOrder(), criteria.getOrderBy(), criteria.getSlug(), criteria.getStatus(), criteria.getCategories(), criteria.getCategoriesExclude(),
+                        criteria.getTags(), criteria.getTagsExclude(), criteria.getStick());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapte
         LOGGER.debug("Calling retrievePosts: postId {};  postContext: {}", postId, context);
         checkArgument(postId > 0, "Please provide a non zero post id");
         checkNotNull(context, "Provide a post context");
-        return api.retrievePost(WordpressConstants.API_VERSION, postId, context, password);
+        return api.retrieve(WordpressConstants.API_VERSION, postId, context, password);
     }
 
     @Override
@@ -74,25 +74,6 @@ public class WordpressServicePostsAdapter extends AbstractWordpressServiceAdapte
     @Override
     public Post retrievePost(int postId) {
         return this.retrievePost(postId, Context.view, "");
-    }
-
-    @Override
-    public Post create(Post post) {
-        checkNotNull(post, "Please define a post to create");
-        return api.create(WordpressConstants.API_VERSION, post);
-    }
-
-    @Override
-    public Post update(Post post) {
-        checkNotNull(post, "Please define a post to update");
-        checkArgument(post.getId() > 0, "The post id is mandatory");
-        return api.update(WordpressConstants.API_VERSION, post.getId(), post);
-    }
-
-    @Override
-    public void delete(int id, boolean force) {
-        checkArgument(id > 0, "The post id is mandatory");
-        api.delete(WordpressConstants.API_VERSION, id, force);
     }
 
 }

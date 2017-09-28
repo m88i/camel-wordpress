@@ -15,9 +15,12 @@ abstract class AbstractWordpressServiceAdapter<A> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWordpressServiceAdapter.class);
 
     AbstractWordpressServiceAdapter(final String wordpressUrl) {
-        this.setApi(JAXRSClientFactory.create(wordpressUrl, 
-                                                 this.getType(), 
-                                                 Collections.singletonList(new JacksonJsonProvider())));
+        //@formatter:off
+        this.setApi(JAXRSClientFactory.create(
+                                              wordpressUrl, 
+                                              this.getApiType(), 
+                                              Collections.singletonList(new JacksonJsonProvider())));
+        //@formatter:on
         /*
          * TODO: aggregate a configuration object to customize the JAXRS
          * behavior, eg.: adding handlers or interceptors
@@ -25,13 +28,11 @@ abstract class AbstractWordpressServiceAdapter<A> {
         WebClient.getConfig(this.getApi()).getInInterceptors().add(new LoggingInInterceptor());
         WebClient.getConfig(this.getApi()).getOutInterceptors().add(new LoggingOutInterceptor());
         LOGGER.info("******* {} API initialized *********", this.getApi().getClass().getSimpleName());
-
     }
-    
-    protected abstract Class<A> getType();
-    
+
+    protected abstract Class<A> getApiType();
+
     protected abstract A getApi();
-    
+
     protected abstract void setApi(A api);
-    
 }

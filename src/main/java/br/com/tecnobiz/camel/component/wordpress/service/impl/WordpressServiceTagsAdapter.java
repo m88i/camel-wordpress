@@ -13,7 +13,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.TagSearchCriteria;
 import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceTags;
 
-public class WordpressServiceTagsAdapter extends AbstractWordpressServiceAdapter<TagsAPI> implements WordpressServiceTags {
+public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAdapter<TagsAPI, Tag> implements WordpressServiceTags {
 
     private TagsAPI api;
 
@@ -32,21 +32,20 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressServiceAdapter
     }
 
     @Override
-    protected Class<TagsAPI> getType() {
+    protected Class<TagsAPI> getApiType() {
         return TagsAPI.class;
     }
 
     @Override
     public Tag create(Tag tag) {
-        checkNotNull(tag, "Please define a tag");
         checkNotNull(emptyToNull(tag.getName()), "Name is mandatory");
-        return this.api.create(WordpressConstants.API_VERSION, tag);
+        return super.create(tag);
     }
 
     @Override
-    public void delete(int tagId, boolean force) {
-        checkArgument(tagId > 0, "Please define a tag");
-        this.api.delete(WordpressConstants.API_VERSION, tagId, force);
+    public Tag update(int id, Tag tag) {
+        checkNotNull(emptyToNull(tag.getName()), "Name is mandatory");
+        return super.update(id, tag);
     }
 
     //@formatter:off
@@ -73,13 +72,6 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressServiceAdapter
     public Tag retrieve(int tagId, Context context) {
         checkArgument(tagId > 0, "Please define a tag");
         return api.retrieve(WordpressConstants.API_VERSION, tagId, context);
-    }
-
-    @Override
-    public Tag update(int tagId, Tag tag) {
-        checkArgument(tagId > 0, "Please define a tag");
-        checkNotNull(tag, "Which tag are you trying to update?");
-        return api.update(WordpressConstants.API_VERSION, tagId, tag);
     }
 
 }
