@@ -16,41 +16,29 @@ public class WordpressSevicePostRevisionAdapter extends AbstractWordpressService
         super(wordpressUrl);
     }
 
-    private PostRevisionsAPI api;
-
     @Override
     protected Class<PostRevisionsAPI> getApiType() {
         return PostRevisionsAPI.class;
     }
 
     @Override
-    protected PostRevisionsAPI getApi() {
-        return api;
-    }
-
-    @Override
-    protected void setApi(PostRevisionsAPI api) {
-        this.api = api;
-    }
-
-    @Override
     public void delete(int postId, int revisionId) {
         checkArgument(postId > 0, "Please define a post id");
         checkArgument(revisionId > 0, "Please define a revision id");
-        this.api.delete(WordpressConstants.API_VERSION, postId, revisionId);
+        this.getApi().delete(WordpressConstants.API_VERSION, postId, revisionId);
     }
 
     @Override
     public PostRevision retrieve(int postId, int revisionId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
         checkArgument(revisionId > 0, "Please define a revision id");
-        return this.api.retrieveRevision(WordpressConstants.API_VERSION, postId, revisionId, context);
+        return this.getApi().retrieveRevision(WordpressConstants.API_VERSION, postId, revisionId, context);
     }
 
     @Override
     public List<PostRevision> list(int postId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
-        return this.api.list(WordpressConstants.API_VERSION, postId, context);
+        return this.getApi().list(WordpressConstants.API_VERSION, postId, context);
     }
 
 }

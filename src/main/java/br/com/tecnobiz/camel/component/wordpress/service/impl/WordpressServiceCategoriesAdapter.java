@@ -14,20 +14,8 @@ import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceCategor
 
 public class WordpressServiceCategoriesAdapter extends AbstractWordpressCrudServiceAdapter<CategoriesAPI, Category> implements WordpressServiceCategories {
 
-    private CategoriesAPI api;
-
     public WordpressServiceCategoriesAdapter(String wordpressUrl) {
         super(wordpressUrl);
-    }
-
-    @Override
-    protected CategoriesAPI getApi() {
-        return api;
-    }
-
-    @Override
-    protected void setApi(CategoriesAPI api) {
-        this.api = api;
     }
 
     @Override
@@ -39,7 +27,7 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressCrudServ
     @Override
     public List<Category> list(CategorySearchCriteria criteria) {
         checkNotNull(criteria, "The search criteria must be defined");
-        return this.api.list(WordpressConstants.API_VERSION, 
+        return getApi().list(WordpressConstants.API_VERSION, 
                              criteria.getContext(), 
                              criteria.getPage(), 
                              criteria.getPerPage(), 
@@ -58,7 +46,7 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressCrudServ
     @Override
     public Category retrieve(int categoryId, Context context) {
         checkArgument(categoryId > 0, "Please define a category");
-        return api.retrieve(WordpressConstants.API_VERSION, categoryId, context);
+        return getApi().retrieve(WordpressConstants.API_VERSION, categoryId, context);
     }
 
 }

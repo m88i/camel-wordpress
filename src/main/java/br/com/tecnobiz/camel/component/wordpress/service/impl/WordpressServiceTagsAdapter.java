@@ -15,20 +15,8 @@ import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceTags;
 
 public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAdapter<TagsAPI, Tag> implements WordpressServiceTags {
 
-    private TagsAPI api;
-
     public WordpressServiceTagsAdapter(String wordpressUrl) {
         super(wordpressUrl);
-    }
-
-    @Override
-    protected TagsAPI getApi() {
-        return api;
-    }
-
-    @Override
-    protected void setApi(TagsAPI api) {
-        this.api = api;
     }
 
     @Override
@@ -52,7 +40,7 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAda
     @Override
     public List<Tag> list(TagSearchCriteria criteria) {
         checkNotNull(criteria, "The search criteria must be defined");
-        return this.api.list(WordpressConstants.API_VERSION, 
+        return this.getApi().list(WordpressConstants.API_VERSION, 
                              criteria.getContext(), 
                              criteria.getPage(), 
                              criteria.getPerPage(), 
@@ -71,7 +59,7 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAda
     @Override
     public Tag retrieve(int tagId, Context context) {
         checkArgument(tagId > 0, "Please define a tag");
-        return api.retrieve(WordpressConstants.API_VERSION, tagId, context);
+        return getApi().retrieve(WordpressConstants.API_VERSION, tagId, context);
     }
 
 }

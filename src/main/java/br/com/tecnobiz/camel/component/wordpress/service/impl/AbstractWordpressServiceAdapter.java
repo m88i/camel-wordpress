@@ -14,25 +14,27 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 abstract class AbstractWordpressServiceAdapter<A> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWordpressServiceAdapter.class);
 
+    private A api;
+    
     AbstractWordpressServiceAdapter(final String wordpressUrl) {
         //@formatter:off
-        this.setApi(JAXRSClientFactory.create(
-                                              wordpressUrl, 
+        this.api = JAXRSClientFactory.create(wordpressUrl, 
                                               this.getApiType(), 
-                                              Collections.singletonList(new JacksonJsonProvider())));
+                                              Collections.singletonList(new JacksonJsonProvider()));
         //@formatter:on
         /*
          * TODO: aggregate a configuration object to customize the JAXRS
          * behavior, eg.: adding handlers or interceptors
          */
-        WebClient.getConfig(this.getApi()).getInInterceptors().add(new LoggingInInterceptor());
-        WebClient.getConfig(this.getApi()).getOutInterceptors().add(new LoggingOutInterceptor());
-        LOGGER.info("******* {} API initialized *********", this.getApi().getClass().getSimpleName());
+        WebClient.getConfig(api).getInInterceptors().add(new LoggingInInterceptor());
+        WebClient.getConfig(api).getOutInterceptors().add(new LoggingOutInterceptor());
+        LOGGER.info("******* {} API initialized *********", api.getClass().getSimpleName());
     }
 
     protected abstract Class<A> getApiType();
 
-    protected abstract A getApi();
+    protected final A getApi() {
+        return api;
+    }
 
-    protected abstract void setApi(A api);
 }

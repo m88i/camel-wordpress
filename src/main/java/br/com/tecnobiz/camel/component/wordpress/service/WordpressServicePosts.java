@@ -23,7 +23,7 @@ public interface WordpressServicePosts {
      * @param password
      * @return
      */
-    Post retrievePost(int postId, Context context, String password);
+    Post retrieve(int postId, Context context, String password);
     
     /**
      * Call to posts without password

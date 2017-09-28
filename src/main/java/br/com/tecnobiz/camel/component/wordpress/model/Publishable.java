@@ -35,7 +35,7 @@ public abstract class Publishable extends BasePublishable {
     private List<WPContent> meta;
 
     @JsonProperty("comment_status")
-    private CommentStatus commentStatus;
+    private PostCommentStatus commentStatus;
 
     @JsonProperty("ping_status")
     private PingStatus pingStatus;
@@ -111,11 +111,11 @@ public abstract class Publishable extends BasePublishable {
         this.featuredMedia = featuredMedia;
     }
 
-    public CommentStatus getCommentStatus() {
+    public PostCommentStatus getCommentStatus() {
         return commentStatus;
     }
 
-    public void setCommentStatus(CommentStatus commentStatus) {
+    public void setCommentStatus(PostCommentStatus commentStatus) {
         this.commentStatus = commentStatus;
     }
 

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceCategories;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceComments;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePages;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostRevision;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
@@ -27,6 +28,7 @@ public class WordpressServiceProvider {
     private WordpressServiceCategories serviceCategories;
     private WordpressServiceTags serviceTags;
     private WordpressServicePages servicePages;
+    private WordpressServiceComments serviceComments;
 
     private WordpressServiceProvider() {
 
@@ -73,6 +75,11 @@ public class WordpressServiceProvider {
     public WordpressServicePages getServicePages() {
         checkNotNull(servicePages, SRV_NULL_MSG);
         return servicePages;
+    }
+    
+    public WordpressServiceComments getServiceComments() {
+        checkNotNull(serviceComments, SRV_NULL_MSG);
+        return serviceComments;
     }
 
 }

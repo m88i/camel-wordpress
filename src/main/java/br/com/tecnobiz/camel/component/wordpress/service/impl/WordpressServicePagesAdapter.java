@@ -29,8 +29,6 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WordpressServicePagesAdapter.class);
 
-    private PagesAPI api;
-
     public WordpressServicePagesAdapter(final String wordpressUrl) {
         super(wordpressUrl);
     }
@@ -40,22 +38,12 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
         return PagesAPI.class;
     }
 
-    @Override
-    protected PagesAPI getApi() {
-        return this.api;
-    }
-
-    @Override
-    protected void setApi(PagesAPI api) {
-        this.api = api;
-    }
-
     //@formatter:off
     @Override
     public List<Page> list(PageSearchCriteria c) {
         LOGGER.debug("Calling list pages: searchCriteria {}", c);
         checkNotNull(c, "Please provide a search criteria");
-        return api.list(WordpressConstants.API_VERSION, 
+        return getApi().list(WordpressConstants.API_VERSION, 
                         c.getContext(), 
                         c.getPage(), 
                         c.getPerPage(), 
@@ -82,7 +70,7 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
     public Page retrieve(int pageId, Context context, String password) {
         LOGGER.debug("Calling retrieve: postId {};  context: {}", pageId, context);
         checkArgument(pageId > 0, "Please provide a non zero post id");
-        return api.retrieve(WordpressConstants.API_VERSION, pageId, context, password);
+        return getApi().retrieve(WordpressConstants.API_VERSION, pageId, context, password);
     }
 
 }
