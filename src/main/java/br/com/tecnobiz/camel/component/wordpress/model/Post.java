@@ -1,7 +1,5 @@
 package br.com.tecnobiz.camel.component.wordpress.model;
 
-import static com.google.common.base.MoreObjects.toStringHelper;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,44 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents a Wordpress Post.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Post extends PostObject implements Serializable {
+public class Post extends Publishable implements Serializable {
 
     private static final long serialVersionUID = -2077181715632668792L;
 
-    private WPContent guid;
-
-    private Integer id;
-
-    private WPContent title;
-
-    private WPContent content;
-
-    private WPContent excerpt;
-
-    private String link;
-
-    private PostStatus status;
-
-    private String type;
-
     private String password;
-
-    @JsonProperty("featured_media")
-    private Integer featuredMedia;
-
-    @JsonProperty("comment_status")
-    private CommentStatus commentStatus;
-
-    @JsonProperty("ping_status")
-    private PingStatus pingStatus;
 
     private Format format;
 
-    private List<WPContent> meta;
-
     private Boolean stick;
-
-    private String template;
 
     private List<Integer> categories;
 
@@ -64,100 +33,12 @@ public class Post extends PostObject implements Serializable {
         this.tags = new ArrayList<>();
     }
 
-    public WPContent getTitle() {
-        return title;
-    }
-
-    public void setTitle(WPContent title) {
-        this.title = title;
-    }
-
-    public WPContent getContent() {
-        return content;
-    }
-
-    public void setContent(WPContent content) {
-        this.content = content;
-    }
-
-    public WPContent getExcerpt() {
-        return excerpt;
-    }
-
-    public void setExcerpt(WPContent excerpt) {
-        this.excerpt = excerpt;
-    }
-
-    public WPContent getGuid() {
-        return guid;
-    }
-
-    public void setGuid(WPContent guid) {
-        this.guid = guid;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public PostStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(PostStatus status) {
-        this.status = status;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getFeaturedMedia() {
-        return featuredMedia;
-    }
-
-    public void setFeaturedMedia(Integer featuredMedia) {
-        this.featuredMedia = featuredMedia;
-    }
-
-    public CommentStatus getCommentStatus() {
-        return commentStatus;
-    }
-
-    public void setCommentStatus(CommentStatus commentStatus) {
-        this.commentStatus = commentStatus;
-    }
-
-    public PingStatus getPingStatus() {
-        return pingStatus;
-    }
-
-    public void setPingStatus(PingStatus pingStatus) {
-        this.pingStatus = pingStatus;
     }
 
     public Format getFormat() {
@@ -168,28 +49,12 @@ public class Post extends PostObject implements Serializable {
         this.format = format;
     }
 
-    public List<WPContent> getMeta() {
-        return meta;
-    }
-
-    public void setMeta(List<WPContent> meta) {
-        this.meta = meta;
-    }
-
     public Boolean isStick() {
         return stick;
     }
 
     public void setStick(Boolean stick) {
         this.stick = stick;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
     }
 
     public List<Integer> getCategories() {
@@ -214,11 +79,6 @@ public class Post extends PostObject implements Serializable {
 
     public void setLiveblogLikes(Integer liveblogLikes) {
         this.liveblogLikes = liveblogLikes;
-    }
-
-    @Override
-    public String toString() {
-        return toStringHelper(this).add("PostID", this.getId()).add("Status", this.status).addValue(this.getTitle()).toString();
     }
 
 }

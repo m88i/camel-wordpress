@@ -7,12 +7,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represents a partial view of a Post, with base properties only.
+ * Describes a object that has base properties for a {@link Publishable} object.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class PostObject implements Serializable {
+public abstract class BasePublishable implements Serializable {
 
-    private static final long serialVersionUID = -1901820243945969584L;
+    private static final long serialVersionUID = 5695150309094986591L;
+
+    private Integer id;
 
     private Integer author;
 
@@ -28,9 +30,16 @@ public abstract class PostObject implements Serializable {
 
     private String slug;
 
+    public BasePublishable() {
 
-    public PostObject() {
+    }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -73,7 +82,6 @@ public abstract class PostObject implements Serializable {
         this.slug = slug;
     }
 
-
     public Integer getAuthor() {
         return author;
     }
@@ -86,4 +94,5 @@ public abstract class PostObject implements Serializable {
     public String toString() {
         return this.slug;
     }
+
 }

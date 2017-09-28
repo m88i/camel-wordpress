@@ -17,7 +17,7 @@ import br.com.tecnobiz.camel.component.wordpress.model.Order;
 import br.com.tecnobiz.camel.component.wordpress.model.Post;
 import br.com.tecnobiz.camel.component.wordpress.model.Context;
 import br.com.tecnobiz.camel.component.wordpress.model.PostOrderBy;
-import br.com.tecnobiz.camel.component.wordpress.model.PostStatus;
+import br.com.tecnobiz.camel.component.wordpress.model.PublishableStatus;
 
 /**
  * Describes the Wordpress Posts API.
@@ -47,7 +47,7 @@ public interface PostsAPI {
                          @QueryParam("order") Order order,
                          @QueryParam("order_by") PostOrderBy orderBy,
                          @QueryParam("slug") List<String> slug,
-                         @QueryParam("status") PostStatus status,
+                         @QueryParam("status") PublishableStatus status,
                          @QueryParam("categories") List<String> categories,
                          @QueryParam("categories_exclude") List<String> categoriesExclude,
                          @QueryParam("tags") List<String> tags,

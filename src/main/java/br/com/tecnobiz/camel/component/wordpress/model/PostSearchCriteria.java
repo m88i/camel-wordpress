@@ -12,7 +12,7 @@ public class PostSearchCriteria extends SearchCriteria {
     private List<Integer> offset;
     private PostOrderBy orderBy;
     private List<String> slug;
-    private PostStatus status;
+    private PublishableStatus status;
     private List<String> categories;
     private List<String> categoriesExclude;
     private List<String> tags;
@@ -76,11 +76,11 @@ public class PostSearchCriteria extends SearchCriteria {
         this.slug = slug;
     }
 
-    public PostStatus getStatus() {
+    public PublishableStatus getStatus() {
         return status;
     }
 
-    public void setStatus(PostStatus status) {
+    public void setStatus(PublishableStatus status) {
         this.status = status;
     }
 

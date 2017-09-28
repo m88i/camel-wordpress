@@ -7,15 +7,13 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PostRevision extends PostObject implements Serializable {
+public class PostRevision extends BasePublishable implements Serializable {
 
     private static final long serialVersionUID = 4138540913280269413L;
 
     private Integer parent;
 
     private String guid;
-
-    private int id;
 
     private String title;
 
@@ -25,14 +23,6 @@ public class PostRevision extends PostObject implements Serializable {
 
     public PostRevision() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getGuid() {
