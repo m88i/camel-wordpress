@@ -12,10 +12,12 @@ import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePages;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostRevision;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
 import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceTags;
+import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceTaxonomy;
 import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServiceCategoriesAdapter;
 import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServicePagesAdapter;
 import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServicePostsAdapter;
 import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServiceTagsAdapter;
+import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressServiceTaxonomyAdapter;
 import br.com.tecnobiz.camel.component.wordpress.service.impl.WordpressSevicePostRevisionAdapter;
 
 public class WordpressServiceProvider {
@@ -29,6 +31,7 @@ public class WordpressServiceProvider {
     private WordpressServiceTags serviceTags;
     private WordpressServicePages servicePages;
     private WordpressServiceComments serviceComments;
+    private WordpressServiceTaxonomy serviceTaxonomy;
 
     private WordpressServiceProvider() {
 
@@ -49,6 +52,8 @@ public class WordpressServiceProvider {
         this.serviceCategories = new WordpressServiceCategoriesAdapter(wordpressApiUrl);
         this.serviceTags = new WordpressServiceTagsAdapter(wordpressApiUrl);
         this.servicePages = new WordpressServicePagesAdapter(wordpressApiUrl);
+        this.serviceTaxonomy = new WordpressServiceTaxonomyAdapter(wordpressApiUrl);
+        
         LOGGER.info("Wordpress Component initialized using base URL: {}", wordpressApiUrl);
     }
 
@@ -80,6 +85,11 @@ public class WordpressServiceProvider {
     public WordpressServiceComments getServiceComments() {
         checkNotNull(serviceComments, SRV_NULL_MSG);
         return serviceComments;
+    }
+    
+    public WordpressServiceTaxonomy getServiceTaxonomy() {
+        checkNotNull(serviceTaxonomy, SRV_NULL_MSG);
+        return serviceTaxonomy;
     }
 
 }
