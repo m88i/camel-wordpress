@@ -7,7 +7,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PostRevision extends BasePublishable implements Serializable {
+public class PostRevision extends Publishable implements Serializable {
 
     private static final long serialVersionUID = 4138540913280269413L;
 

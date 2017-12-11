@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * The Wordpress rendered content
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WPContent implements Serializable {
+public class Content implements Serializable {
 
     private static final long serialVersionUID = -6355688058047458932L;
 
@@ -18,7 +18,7 @@ public class WPContent implements Serializable {
     @JsonProperty("protected")
     private Boolean protected_;
 
-    public WPContent() {
+    public Content() {
 
     }
 

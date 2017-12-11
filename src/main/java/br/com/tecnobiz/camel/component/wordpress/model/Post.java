@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents a Wordpress Post.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Post extends Publishable implements Serializable {
+public class Post extends TextPublishable implements Serializable {
 
     private static final long serialVersionUID = -2077181715632668792L;
 

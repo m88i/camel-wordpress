@@ -27,7 +27,7 @@ public class Comment implements Serializable {
     private String authorUrl;
     @JsonProperty("author_user_agent")
     private String authorUserAgent;
-    private WPContent content;
+    private Content content;
     private Date date;
     @JsonProperty("date_gmt")
     private Date dateGmt;
@@ -103,11 +103,11 @@ public class Comment implements Serializable {
         this.authorUserAgent = authorUserAgent;
     }
 
-    public WPContent getContent() {
+    public Content getContent() {
         return content;
     }
 
-    public void setContent(WPContent content) {
+    public void setContent(Content content) {
         this.content = content;
     }
 

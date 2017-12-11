@@ -1,157 +1,98 @@
 package br.com.tecnobiz.camel.component.wordpress.model;
 
-import static com.google.common.base.MoreObjects.toStringHelper;
-
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Describes a object that may be published on the Wordpress engine, eg. a Post,
- * a Page etc.
+ * Describes a object that has base properties for a {@link TextPublishable} object.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class Publishable extends BasePublishable {
+public abstract class Publishable implements Serializable {
 
-    private static final long serialVersionUID = -2913318702739560478L;
+    private static final long serialVersionUID = 5695150309094986591L;
 
-    private WPContent guid;
+    private Integer id;
 
-    private String link;
+    private Integer author;
 
-    private PublishableStatus status;
+    private Date date;
 
-    private String type;
+    @JsonProperty("date_gmt")
+    private Date dateGmt;
 
-    private WPContent title;
+    private Date modified;
 
-    private WPContent content;
+    @JsonProperty("modified_gmt")
+    private Date modifiedGmt;
 
-    private WPContent excerpt;
-
-    private String template;
-
-    private List<WPContent> meta;
-
-    @JsonProperty("comment_status")
-    private PostCommentStatus commentStatus;
-
-    @JsonProperty("ping_status")
-    private PingStatus pingStatus;
-
-    @JsonProperty("featured_media")
-    private Integer featuredMedia;
+    private String slug;
 
     public Publishable() {
 
     }
 
-    public WPContent getTitle() {
-        return title;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTitle(WPContent title) {
-        this.title = title;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public WPContent getContent() {
-        return content;
+    public Date getDate() {
+        return date;
     }
 
-    public void setContent(WPContent content) {
-        this.content = content;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public WPContent getExcerpt() {
-        return excerpt;
+    public Date getDateGmt() {
+        return dateGmt;
     }
 
-    public void setExcerpt(WPContent excerpt) {
-        this.excerpt = excerpt;
+    public void setDateGmt(Date dateGmt) {
+        this.dateGmt = dateGmt;
     }
 
-    public WPContent getGuid() {
-        return guid;
+    public Date getModified() {
+        return modified;
     }
 
-    public void setGuid(WPContent guid) {
-        this.guid = guid;
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
-    public String getLink() {
-        return link;
+    public Date getModifiedGmt() {
+        return modifiedGmt;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setModifiedGmt(Date modifiedGmt) {
+        this.modifiedGmt = modifiedGmt;
     }
 
-    public PublishableStatus getStatus() {
-        return status;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setStatus(PublishableStatus status) {
-        this.status = status;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
-    public String getType() {
-        return type;
+    public Integer getAuthor() {
+        return author;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAuthor(Integer author) {
+        this.author = author;
     }
 
-    public Integer getFeaturedMedia() {
-        return featuredMedia;
-    }
-
-    public void setFeaturedMedia(Integer featuredMedia) {
-        this.featuredMedia = featuredMedia;
-    }
-
-    public PostCommentStatus getCommentStatus() {
-        return commentStatus;
-    }
-
-    public void setCommentStatus(PostCommentStatus commentStatus) {
-        this.commentStatus = commentStatus;
-    }
-
-    public PingStatus getPingStatus() {
-        return pingStatus;
-    }
-
-    public void setPingStatus(PingStatus pingStatus) {
-        this.pingStatus = pingStatus;
-    }
-
-    public List<WPContent> getMeta() {
-        return meta;
-    }
-
-    public void setMeta(List<WPContent> meta) {
-        this.meta = meta;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-    
-    //@formatter:off
     @Override
     public String toString() {
-        return toStringHelper(this)
-            .add("ID", this.getId())
-            .add("Status", this.getStatus())
-            .addValue(this.guid)
-            .addValue(this.getTitle()).toString();
+        return this.slug;
     }
-    //@formatter:on
-}
 
+}
