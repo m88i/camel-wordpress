@@ -12,7 +12,7 @@ import org.apache.camel.spi.UriPath;
 /**
  * Represents a Wordpress endpoint.
  */
-@UriEndpoint(scheme = "wordpress", title = "Wordpress", syntax="wordpress:name", consumerClass = WordpressConsumer.class, label = "Wordpress")
+@UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax="wordpress:name", consumerClass = WordpressConsumer.class, label = "Wordpress")
 public class WordpressEndpoint extends DefaultEndpoint {
     @UriPath @Metadata(required = "true")
     private String name;
