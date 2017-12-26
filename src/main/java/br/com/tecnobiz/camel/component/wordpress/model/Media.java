@@ -1,9 +1,11 @@
 package br.com.tecnobiz.camel.component.wordpress.model;
 
-public class Media {
+public class Media extends Publishable {
+    
+    
 
     public Media() {
-        // TODO Auto-generated constructor stub
+
     }
 
 }
