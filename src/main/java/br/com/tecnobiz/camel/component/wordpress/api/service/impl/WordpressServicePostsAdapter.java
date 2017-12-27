@@ -54,12 +54,12 @@ public class WordpressServicePostsAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
-    public Post retrievePost(int postId, Context context) {
+    public Post retrieve(int postId, Context context) {
         return this.retrieve(postId, context, "");
     }
 
     @Override
-    public Post retrievePost(int postId) {
+    public Post retrieve(int postId) {
         return this.retrieve(postId, Context.view, "");
     }
 

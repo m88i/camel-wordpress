@@ -32,7 +32,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param context
      * @return
      */
-    Post retrievePost(int postId, Context context);
+    Post retrieve(int postId, Context context);
     
     /**
      * Posts in view mode, without password.
@@ -40,7 +40,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param postId
      * @return
      */
-    Post retrievePost(int postId);
+    Post retrieve(int postId);
     
     /**
      * Creates a new post

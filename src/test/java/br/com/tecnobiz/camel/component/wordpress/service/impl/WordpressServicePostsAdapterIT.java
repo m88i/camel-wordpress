@@ -30,7 +30,7 @@ public class WordpressServicePostsAdapterIT {
 
     @Test
     public void testRetrievePost() {
-        final Post post = servicePosts.retrievePost(1);
+        final Post post = servicePosts.retrieve(1);
         assertThat(post, not(nullValue()));
         assertThat(post.getId(), is(1));
     }
