@@ -13,10 +13,10 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
 import org.m88i.camel.component.wordpress.api.model.PostRevision;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePostRevision;
+import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
 /*
  * TODO fix authentication problem (when implementing global authentication) 

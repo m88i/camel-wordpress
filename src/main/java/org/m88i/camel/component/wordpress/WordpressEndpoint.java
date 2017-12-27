@@ -14,24 +14,26 @@ import org.apache.camel.util.EndpointHelper;
 import org.apache.camel.util.StringHelper;
 import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
+import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.proxy.WordpressServiceType;
 
 /**
  * Represents a Wordpress endpoint.
  */
-@UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:method", consumerClass = WordpressConsumer.class, label = "Wordpress")
+@UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:service", consumerClass = WordpressConsumer.class, label = "Wordpress")
 public class WordpressEndpoint extends DefaultEndpoint {
 
-    public static final String ENDPOINT_METHOD_POST = "post";
+    public static final String ENDPOINT_SERVICE_POST = "post";
 
-    @UriPath(description = "The endpoint method. Currently, only the 'post' method is supported.", enums = "org.m88i.camel.component.wordpress.WordpressMethodType")
+    @UriPath(description = "The endpoint service. Currently, only the 'post' service is supported.", enums = ENDPOINT_SERVICE_POST)
     @Metadata(required = "true")
-    private String method;
+    private String service;
 
     @UriParam
     private WordpressEndpointConfiguration configuration;
 
     private WordpressService wordpressService;
-    private WordpressMethodType methodType;
+    private WordpressServiceType serviceType;
     
     public WordpressEndpoint(String uri, WordpressComponent component, WordpressEndpointConfiguration configuration) {
         super(uri, component);
@@ -46,12 +48,12 @@ public class WordpressEndpoint extends DefaultEndpoint {
         return wordpressService;
     }
     
-    public String getMethod() {
-        return method;
+    public String getService() {
+        return service;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public void setService(String method) {
+        this.service = method;
     }
     
     public Producer createProducer() throws Exception {
@@ -84,19 +86,23 @@ public class WordpressEndpoint extends DefaultEndpoint {
     private void initServiceProvider() {
         this.configureMethodType();
         WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getId());
-        this.wordpressService = WordpressServiceProvider.getInstance().getService(methodType.getServiceType());
+        this.wordpressService = WordpressServiceProvider.getInstance().getService(serviceType.getServiceType());
     }
     
     private void configureMethodType() {
-        StringHelper.notEmpty(this.method, "method");
-        if(!method.equals(ENDPOINT_METHOD_POST)) {
-            throw new IllegalArgumentException(String.format("Invalid method, supported method type is: %s", ENDPOINT_METHOD_POST));
+        StringHelper.notEmpty(this.service, "service");
+        if(!service.equals(ENDPOINT_SERVICE_POST)) {
+            throw new IllegalArgumentException(String.format("Invalid service, supported service type is: %s", ENDPOINT_SERVICE_POST));
         }
-        this.methodType = WordpressMethodType.valueOf(method);
+        this.serviceType = WordpressServiceType.fromMethodName(service);
     }
     
     public boolean isSingleton() {
         return true;
+    }
+    
+    public WordpressServiceType getServiceType() {
+        return serviceType;
     }
 
 }

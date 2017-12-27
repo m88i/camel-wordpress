@@ -1,4 +1,4 @@
-package org.m88i.camel.component.wordpress;
+package org.m88i.camel.component.wordpress.proxy;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.emptyToNull;
@@ -6,6 +6,7 @@ import static com.google.common.base.Strings.emptyToNull;
 import java.util.HashMap;
 
 import org.apache.camel.util.ObjectHelper;
+import org.m88i.camel.component.wordpress.WordpressConstants;
 import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceCategories;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceComments;

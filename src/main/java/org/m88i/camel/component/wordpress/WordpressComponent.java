@@ -32,7 +32,7 @@ public class WordpressComponent extends  DefaultComponent {
         WordpressEndpoint endpoint = new WordpressEndpoint(uri, this, endpointConfiguration);
         setProperties(endpoint, parameters);
         
-        endpoint.setMethod(remaining);
+        endpoint.setService(remaining);
         endpoint.configureProperties(parameters);
         
         return endpoint;

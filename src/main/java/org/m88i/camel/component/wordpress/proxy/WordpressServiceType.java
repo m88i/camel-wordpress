@@ -1,16 +1,16 @@
-package org.m88i.camel.component.wordpress;
+package org.m88i.camel.component.wordpress.proxy;
 
 import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
 
-public enum WordpressMethodType {
+public enum WordpressServiceType {
     
     POST(WordpressServicePosts.class, "post");
     
     private Class<? extends WordpressService> serviceType;
     private String methodName;
     
-    private WordpressMethodType(Class<? extends WordpressService> serviceType, String methodName) {
+    private WordpressServiceType(Class<? extends WordpressService> serviceType, String methodName) {
         this.serviceType = serviceType;
         this.methodName = methodName;
     }
@@ -24,8 +24,8 @@ public enum WordpressMethodType {
         return (Class<T>)serviceType;
     }
     
-    public WordpressMethodType fromMethodName(String methodName) {
-        return WordpressMethodType.valueOf(methodName.toUpperCase());
+    public static WordpressServiceType fromMethodName(String methodName) {
+        return WordpressServiceType.valueOf(methodName.toUpperCase());
     }
 
 }

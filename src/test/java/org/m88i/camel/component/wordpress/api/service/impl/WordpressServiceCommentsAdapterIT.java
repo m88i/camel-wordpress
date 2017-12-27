@@ -11,11 +11,11 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
 import org.m88i.camel.component.wordpress.api.model.Category;
 import org.m88i.camel.component.wordpress.api.model.CategorySearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceCategories;
+import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
 public class WordpressServiceCommentsAdapterIT {
 
