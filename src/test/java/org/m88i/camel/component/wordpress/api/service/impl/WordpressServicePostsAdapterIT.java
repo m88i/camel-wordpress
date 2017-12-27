@@ -1,4 +1,4 @@
-package org.m88i.camel.component.wordpress.service.impl;
+package org.m88i.camel.component.wordpress.api.service.impl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;

@@ -1,4 +1,4 @@
-package org.m88i.camel.component.wordpress.service.impl;
+package org.m88i.camel.component.wordpress.api.service.impl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -13,36 +13,36 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
-import org.m88i.camel.component.wordpress.api.model.Tag;
-import org.m88i.camel.component.wordpress.api.model.TagSearchCriteria;
-import org.m88i.camel.component.wordpress.api.service.WordpressServiceTags;
+import org.m88i.camel.component.wordpress.api.model.Category;
+import org.m88i.camel.component.wordpress.api.model.CategorySearchCriteria;
+import org.m88i.camel.component.wordpress.api.service.WordpressServiceCategories;
 
-public class WordpressServiceTagsAdapterIT {
+public class WordpressServiceCategoriesAdapterIT {
 
-    private static WordpressServiceTags serviceTags;
+    private static WordpressServiceCategories serviceCategories;
 
     @BeforeClass
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        serviceTags = serviceProvider.getService(WordpressServiceTags.class);
+        serviceCategories = serviceProvider.getService(WordpressServiceCategories.class);
     }
 
     @Test
     public void testRetrieve() {
-        final Tag tag = serviceTags.retrieve(6, null);
-        assertThat(tag, not(nullValue()));
-        assertThat(tag.getId(), is(6));
-        assertThat(tag.getName(), not(isEmptyOrNullString()));
+        final Category cat = serviceCategories.retrieve(1, null);
+        assertThat(cat, not(nullValue()));
+        assertThat(cat.getId(), is(1));
+        assertThat(cat.getName(), not(isEmptyOrNullString()));
     }
 
     @Test
     public void testList() {
-        final TagSearchCriteria criteria = new TagSearchCriteria();
+        final CategorySearchCriteria criteria = new CategorySearchCriteria();
         criteria.setPage(1);
         criteria.setPerPage(2);
-        final List<Tag> revisions = serviceTags.list(criteria);
-        assertThat(revisions, is(not(emptyCollectionOf(Tag.class))));
+        final List<Category> revisions = serviceCategories.list(criteria);
+        assertThat(revisions, is(not(emptyCollectionOf(Category.class))));
         assertThat(revisions.size(), is(2));
     }
 }

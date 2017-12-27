@@ -12,6 +12,7 @@ import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
 import org.apache.camel.util.EndpointHelper;
 import org.apache.camel.util.StringHelper;
+import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 
 /**
@@ -29,7 +30,8 @@ public class WordpressEndpoint extends DefaultEndpoint {
     @UriParam
     private WordpressEndpointConfiguration configuration;
 
-    private WordpressServiceProvider serviceProvider;
+    private WordpressService wordpressService;
+    private WordpressMethodType methodType;
     
     public WordpressEndpoint(String uri, WordpressComponent component, WordpressEndpointConfiguration configuration) {
         super(uri, component);
@@ -40,10 +42,10 @@ public class WordpressEndpoint extends DefaultEndpoint {
         return configuration;
     }
     
-    public WordpressServiceProvider getServiceProvider() {
-        return serviceProvider;
+    public WordpressService getWordpressService() {
+        return wordpressService;
     }
-
+    
     public String getMethod() {
         return method;
     }
@@ -80,16 +82,17 @@ public class WordpressEndpoint extends DefaultEndpoint {
     }
     
     private void initServiceProvider() {
-        this.checkMethodSupport();
-        this.serviceProvider = WordpressServiceProvider.getInstance();
-        this.serviceProvider.init(configuration.getUrl(), configuration.getId());
+        this.configureMethodType();
+        WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getId());
+        this.wordpressService = WordpressServiceProvider.getInstance().getService(methodType.getServiceType());
     }
     
-    private void checkMethodSupport() {
+    private void configureMethodType() {
         StringHelper.notEmpty(this.method, "method");
         if(!method.equals(ENDPOINT_METHOD_POST)) {
             throw new IllegalArgumentException(String.format("Invalid method, supported method type is: %s", ENDPOINT_METHOD_POST));
         }
+        this.methodType = WordpressMethodType.valueOf(method);
     }
     
     public boolean isSingleton() {
