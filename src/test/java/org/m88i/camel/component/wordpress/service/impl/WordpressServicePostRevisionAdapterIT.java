@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service.impl;
+package org.m88i.camel.component.wordpress.service.impl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -14,10 +14,9 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.WordpressTestConstants;
 import org.m88i.camel.component.wordpress.api.model.PostRevision;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePostRevision;
-
-import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
 
 /*
  * TODO fix authentication problem (when implementing global authentication) 

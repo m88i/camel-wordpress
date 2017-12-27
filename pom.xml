@@ -4,7 +4,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>br.com.tecnobiz.camel</groupId>
+	<groupId>org.m88i.camel</groupId>
 	<artifactId>camel-wordpress</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1</version>

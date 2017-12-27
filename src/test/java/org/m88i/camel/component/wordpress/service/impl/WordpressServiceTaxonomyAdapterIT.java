@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.service.impl;
+package org.m88i.camel.component.wordpress.service.impl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -11,10 +11,9 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.WordpressTestConstants;
 import org.m88i.camel.component.wordpress.api.model.Taxonomy;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceTaxonomy;
-
-import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
 
 public class WordpressServiceTaxonomyAdapterIT {
 

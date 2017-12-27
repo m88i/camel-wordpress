@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress.model;
+package org.m88i.camel.component.wordpress.model;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;

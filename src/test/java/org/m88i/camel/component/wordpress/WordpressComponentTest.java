@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress;
+package org.m88i.camel.component.wordpress;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;

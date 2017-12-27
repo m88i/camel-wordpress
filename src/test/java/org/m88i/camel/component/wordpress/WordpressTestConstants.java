@@ -1,4 +1,4 @@
-package br.com.tecnobiz.camel.component.wordpress;
+package org.m88i.camel.component.wordpress;
 
 public class WordpressTestConstants {
     
