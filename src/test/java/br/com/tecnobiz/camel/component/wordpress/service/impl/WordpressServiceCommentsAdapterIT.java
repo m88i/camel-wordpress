@@ -14,9 +14,9 @@ import org.junit.Test;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.model.Category;
-import br.com.tecnobiz.camel.component.wordpress.model.CategorySearchCriteria;
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceCategories;
+import br.com.tecnobiz.camel.component.wordpress.api.model.Category;
+import br.com.tecnobiz.camel.component.wordpress.api.model.CategorySearchCriteria;
+import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServiceCategories;
 
 public class WordpressServiceCommentsAdapterIT {
 
@@ -26,7 +26,7 @@ public class WordpressServiceCommentsAdapterIT {
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        serviceCategories = serviceProvider.getServiceCategories();
+        serviceCategories = serviceProvider.getService(WordpressServiceCategories.class);
     }
 
     @Test

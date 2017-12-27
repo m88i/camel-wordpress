@@ -13,9 +13,9 @@ import org.junit.Test;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.model.Page;
-import br.com.tecnobiz.camel.component.wordpress.model.PageSearchCriteria;
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePages;
+import br.com.tecnobiz.camel.component.wordpress.api.model.Page;
+import br.com.tecnobiz.camel.component.wordpress.api.model.PageSearchCriteria;
+import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServicePages;
 
 public class WordpressServicePagesAdapterIT {
 
@@ -25,7 +25,7 @@ public class WordpressServicePagesAdapterIT {
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        servicePages = serviceProvider.getServicePages();
+        servicePages = serviceProvider.getService(WordpressServicePages.class);
     }
 
     @Test

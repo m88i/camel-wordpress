@@ -13,9 +13,9 @@ import org.junit.Test;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.model.Post;
-import br.com.tecnobiz.camel.component.wordpress.model.PostSearchCriteria;
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePosts;
+import br.com.tecnobiz.camel.component.wordpress.api.model.Post;
+import br.com.tecnobiz.camel.component.wordpress.api.model.PostSearchCriteria;
+import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServicePosts;
 
 public class WordpressServicePostsAdapterIT {
 
@@ -25,7 +25,7 @@ public class WordpressServicePostsAdapterIT {
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        servicePosts = serviceProvider.getServicePosts();
+        servicePosts = serviceProvider.getService(WordpressServicePosts.class);
     }
 
     @Test

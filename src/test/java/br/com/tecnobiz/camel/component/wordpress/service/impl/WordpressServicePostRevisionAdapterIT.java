@@ -16,8 +16,8 @@ import org.junit.Test;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.model.PostRevision;
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServicePostRevision;
+import br.com.tecnobiz.camel.component.wordpress.api.model.PostRevision;
+import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServicePostRevision;
 
 /*
  * TODO fix authentication problem (when implementing global authentication) 
@@ -32,7 +32,7 @@ public class WordpressServicePostRevisionAdapterIT {
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        servicePostRevision = serviceProvider.getServicePostRevision();
+        servicePostRevision = serviceProvider.getService(WordpressServicePostRevision.class);
     }
 
     @Test

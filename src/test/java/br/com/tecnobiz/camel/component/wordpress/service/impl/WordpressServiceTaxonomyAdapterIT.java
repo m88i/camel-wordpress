@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.model.Taxonomy;
-import br.com.tecnobiz.camel.component.wordpress.service.WordpressServiceTaxonomy;
+import br.com.tecnobiz.camel.component.wordpress.api.model.Taxonomy;
+import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServiceTaxonomy;
 
 public class WordpressServiceTaxonomyAdapterIT {
 
@@ -24,7 +24,7 @@ public class WordpressServiceTaxonomyAdapterIT {
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
         serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
-        serviceTaxonomy = serviceProvider.getServiceTaxonomy();
+        serviceTaxonomy = serviceProvider.getService(WordpressServiceTaxonomy.class);
     }
 
     @Test
