@@ -10,12 +10,12 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.m88i.camel.component.wordpress.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.api.model.Post;
+import org.m88i.camel.component.wordpress.api.model.PostSearchCriteria;
+import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
 
-import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.api.model.Post;
-import br.com.tecnobiz.camel.component.wordpress.api.model.PostSearchCriteria;
-import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServicePosts;
 
 public class WordpressServicePostsAdapterIT {
 

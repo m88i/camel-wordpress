@@ -11,12 +11,12 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.m88i.camel.component.wordpress.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.api.model.Category;
+import org.m88i.camel.component.wordpress.api.model.CategorySearchCriteria;
+import org.m88i.camel.component.wordpress.api.service.WordpressServiceCategories;
 
-import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.api.model.Category;
-import br.com.tecnobiz.camel.component.wordpress.api.model.CategorySearchCriteria;
-import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServiceCategories;
 
 public class WordpressServiceCategoriesAdapterIT {
 

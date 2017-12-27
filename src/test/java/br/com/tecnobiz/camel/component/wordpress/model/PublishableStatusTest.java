@@ -4,8 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import br.com.tecnobiz.camel.component.wordpress.api.model.PublishableStatus;
+import org.m88i.camel.component.wordpress.api.model.PublishableStatus;
 
 public class PublishableStatusTest {
 

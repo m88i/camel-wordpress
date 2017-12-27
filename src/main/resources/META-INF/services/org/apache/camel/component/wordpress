@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-class=br.com.tecnobiz.camel.component.wordpress.WordpressComponent
+class=org.m88i.camel.component.wordpress.WordpressComponent

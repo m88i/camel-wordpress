@@ -161,7 +161,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-SymbolicName>br.com.tecnobiz.camel.component.wordpress.camel-wordpress</Bundle-SymbolicName>
+						<Bundle-SymbolicName>org.m88i.camel.component.wordpress.camel-wordpress</Bundle-SymbolicName>
 						<Export-Service>org.apache.camel.spi.ComponentResolver;component=wordpress</Export-Service>
 					</instructions>
 				</configuration>

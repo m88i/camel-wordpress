@@ -4,8 +4,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
-
-import br.com.tecnobiz.camel.component.wordpress.config.WordpressConfiguration;
+import org.m88i.camel.component.wordpress.WordpressComponent;
+import org.m88i.camel.component.wordpress.WordpressConstants;
+import org.m88i.camel.component.wordpress.config.WordpressConfiguration;
 
 public class WordpressComponentTest extends CamelTestSupport {
 

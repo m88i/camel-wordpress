@@ -10,11 +10,11 @@ import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.m88i.camel.component.wordpress.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.api.model.Taxonomy;
+import org.m88i.camel.component.wordpress.api.service.WordpressServiceTaxonomy;
 
-import br.com.tecnobiz.camel.component.wordpress.WordpressServiceProvider;
 import br.com.tecnobiz.camel.component.wordpress.WordpressTestConstants;
-import br.com.tecnobiz.camel.component.wordpress.api.model.Taxonomy;
-import br.com.tecnobiz.camel.component.wordpress.api.service.WordpressServiceTaxonomy;
 
 public class WordpressServiceTaxonomyAdapterIT {
 
