@@ -21,21 +21,21 @@ public class WordpressSevicePostRevisionAdapter extends AbstractWordpressService
     }
 
     @Override
-    public void delete(int postId, int revisionId) {
+    public void delete(Integer postId, Integer revisionId) {
         checkArgument(postId > 0, "Please define a post id");
         checkArgument(revisionId > 0, "Please define a revision id");
         this.getApi().delete(this.getApiVersion(), postId, revisionId);
     }
 
     @Override
-    public PostRevision retrieve(int postId, int revisionId, Context context) {
+    public PostRevision retrieve(Integer postId, Integer revisionId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
         checkArgument(revisionId > 0, "Please define a revision id");
         return this.getApi().retrieveRevision(this.getApiVersion(), postId, revisionId, context);
     }
 
     @Override
-    public List<PostRevision> list(int postId, Context context) {
+    public List<PostRevision> list(Integer postId, Context context) {
         checkArgument(postId > 0, "Please define a post id");
         return this.getApi().list(this.getApiVersion(), postId, context);
     }

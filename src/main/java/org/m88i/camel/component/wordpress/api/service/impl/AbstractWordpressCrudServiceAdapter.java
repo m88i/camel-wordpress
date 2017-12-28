@@ -22,12 +22,12 @@ abstract class AbstractWordpressCrudServiceAdapter<A extends WordpressAPI<T>, T>
         return getApi().create(this.getApiVersion(), object);
     }
 
-    public void delete(int id, boolean force) {
+    public void delete(Integer id, Boolean force) {
         checkArgument(id > 0, "The id is mandatory");
         getApi().delete(this.getApiVersion(), id, force);
     }
 
-    public T update(int id, T object) {
+    public T update(Integer id, T object) {
         checkNotNull(object, "Please define an object to update");
         checkArgument(id > 0, "The id is mandatory");
         return getApi().update(this.getApiVersion(), id, object);

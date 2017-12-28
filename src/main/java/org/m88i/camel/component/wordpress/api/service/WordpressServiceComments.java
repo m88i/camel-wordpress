@@ -10,12 +10,12 @@ public interface WordpressServiceComments extends WordpressService {
 
     Comment create(Comment category);
 
-    void delete(int categoryId, boolean force);
+    void delete(Integer categoryId, Boolean force);
 
     List<Comment> list(CommentSearchCriteria criteria);
 
-    Comment retrieve(int categoryId, Context context);
+    Comment retrieve(Integer categoryId, Context context);
 
-    Comment update(int categoryId, Comment category);
+    Comment update(Integer categoryId, Comment category);
 
 }

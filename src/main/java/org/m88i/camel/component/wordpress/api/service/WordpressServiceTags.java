@@ -10,12 +10,12 @@ public interface WordpressServiceTags extends WordpressService {
 
     Tag create(Tag tag);
 
-    void delete(int tagId, boolean force);
+    void delete(Integer tagId, Boolean force);
 
     List<Tag> list(TagSearchCriteria criteria);
 
-    Tag retrieve(int tagId, Context context);
+    Tag retrieve(Integer tagId, Context context);
 
-    Tag update(int tagId, Tag tag);
+    Tag update(Integer tagId, Tag tag);
 
 }

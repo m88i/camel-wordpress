@@ -65,7 +65,7 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
     //@formatter:on
 
     @Override
-    public Page retrieve(int pageId, Context context, String password) {
+    public Page retrieve(Integer pageId, Context context, String password) {
         LOGGER.debug("Calling retrieve: postId {};  context: {}", pageId, context);
         checkArgument(pageId > 0, "Please provide a non zero post id");
         return getApi().retrieve(this.getApiVersion(), pageId, context, password);

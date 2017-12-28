@@ -23,7 +23,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param password
      * @return
      */
-    Post retrieve(int postId, Context context, String password);
+    Post retrieve(Integer postId, Context context, String password);
     
     /**
      * Call to posts without password
@@ -32,7 +32,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param context
      * @return
      */
-    Post retrieve(int postId, Context context);
+    Post retrieve(Integer postId, Context context);
     
     /**
      * Posts in view mode, without password.
@@ -40,7 +40,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param postId
      * @return
      */
-    Post retrieve(int postId);
+    Post retrieve(Integer postId);
     
     /**
      * Creates a new post
@@ -56,7 +56,7 @@ public interface WordpressServicePosts extends WordpressService {
      * @param post
      * @return
      */
-    Post update(int id, Post post);
+    Post update(Integer id, Post post);
     
     /**
      * Deletes a post.
@@ -64,6 +64,6 @@ public interface WordpressServicePosts extends WordpressService {
      * @param id
      * @param force true to send straight to the heaven
      */
-    void delete(int id, boolean force);
+    void delete(Integer id, Boolean force);
 
 }

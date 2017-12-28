@@ -7,10 +7,10 @@ import org.m88i.camel.component.wordpress.api.model.PostRevision;
 
 public interface WordpressServicePostRevision extends WordpressService {
     
-    void delete(int postId, int revisionId);
+    void delete(Integer postId, Integer revisionId);
     
-    PostRevision retrieve(int postId, int revisionId, Context context);
+    PostRevision retrieve(Integer postId, Integer revisionId, Context context);
     
-    List<PostRevision> list(int postId, Context context);
+    List<PostRevision> list(Integer postId, Context context);
 
 }

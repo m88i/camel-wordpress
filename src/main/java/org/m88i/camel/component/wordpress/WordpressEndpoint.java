@@ -85,7 +85,7 @@ public class WordpressEndpoint extends DefaultEndpoint {
     
     private void initServiceProvider() {
         this.configureMethodType();
-        WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getId());
+        WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getApiVersion());
         this.wordpressService = WordpressServiceProvider.getInstance().getService(serviceType.getServiceType());
     }
     

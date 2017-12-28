@@ -10,11 +10,11 @@ public interface WordpressServiceCategories extends WordpressService {
     
     Category create(Category category);
     
-    void delete(int categoryId, boolean force);
+    void delete(Integer categoryId, Boolean force);
     
     List<Category> list(CategorySearchCriteria criteria);
     
-    Category retrieve(int categoryId, Context context);
+    Category retrieve(Integer categoryId, Context context);
     
-    Category update(int categoryId, Category category);
+    Category update(Integer categoryId, Category category);
 }

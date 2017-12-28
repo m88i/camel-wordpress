@@ -10,12 +10,12 @@ public interface WordpressServicePages extends WordpressService {
 
     List<Page> list(PageSearchCriteria searchCriteria);
 
-    Page retrieve(int pageId, Context context, String password);
+    Page retrieve(Integer pageId, Context context, String password);
 
     Page create(Page post);
 
-    Page update(int id, Page post);
+    Page update(Integer id, Page post);
 
-    void delete(int id, boolean force);
+    void delete(Integer id, Boolean force);
 
 }

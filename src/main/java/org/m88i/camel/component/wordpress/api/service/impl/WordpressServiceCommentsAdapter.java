@@ -51,7 +51,7 @@ public class WordpressServiceCommentsAdapter extends AbstractWordpressCrudServic
     //@formatter:on
 
     @Override
-    public Comment retrieve(int id, Context context) {
+    public Comment retrieve(Integer id, Context context) {
         checkArgument(id > 0, "Please define a comment id");
         return getApi().retrieve(this.getApiVersion(), id, context);
     }

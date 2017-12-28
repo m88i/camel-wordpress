@@ -1,5 +1,7 @@
 package org.m88i.camel.component.wordpress;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -15,7 +17,7 @@ public class WordpressComponentTest extends CamelTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:result");
         mock.expectedMinimumMessageCount(1);       
         
-        assertMockEndpointsSatisfied();
+        assertMockEndpointsSatisfied(90, TimeUnit.SECONDS);
     }
 
     @Override

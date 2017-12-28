@@ -30,7 +30,7 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAda
     }
 
     @Override
-    public Tag update(int id, Tag tag) {
+    public Tag update(Integer id, Tag tag) {
         checkNotNull(emptyToNull(tag.getName()), "Name is mandatory");
         return super.update(id, tag);
     }
@@ -56,7 +56,7 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAda
     //@formatter:on
 
     @Override
-    public Tag retrieve(int tagId, Context context) {
+    public Tag retrieve(Integer tagId, Context context) {
         checkArgument(tagId > 0, "Please define a tag");
         return getApi().retrieve(this.getApiVersion(), tagId, context);
     }

@@ -43,7 +43,7 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressCrudServ
     //@formatter:on
 
     @Override
-    public Category retrieve(int categoryId, Context context) {
+    public Category retrieve(Integer categoryId, Context context) {
         checkArgument(categoryId > 0, "Please define a category");
         return getApi().retrieve(this.getApiVersion(), categoryId, context);
     }

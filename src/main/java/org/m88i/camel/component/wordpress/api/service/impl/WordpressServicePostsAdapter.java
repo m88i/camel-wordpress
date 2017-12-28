@@ -45,7 +45,7 @@ public class WordpressServicePostsAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
-    public Post retrieve(int postId, Context context, String password) {
+    public Post retrieve(Integer postId, Context context, String password) {
         LOGGER.debug("Calling retrievePosts: postId {};  postContext: {}", postId, context);
         checkArgument(postId > 0, "Please provide a non zero post id");
         checkNotNull(context, "Provide a post context");
@@ -53,12 +53,12 @@ public class WordpressServicePostsAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
-    public Post retrieve(int postId, Context context) {
+    public Post retrieve(Integer postId, Context context) {
         return this.retrieve(postId, context, "");
     }
 
     @Override
-    public Post retrieve(int postId) {
+    public Post retrieve(Integer postId) {
         return this.retrieve(postId, Context.view, "");
     }
 
