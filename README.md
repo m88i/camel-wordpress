@@ -6,6 +6,42 @@ Camel component for [Wordpress API](https://developer.wordpress.org/rest-api/ref
 
 Currently only the [Posts API](https://developer.wordpress.org/rest-api/reference/posts/#schema) is supported. Stay tuned for further releases. :)
 
+### Clone & Build
+
+Just clone this repo and build it using Maven:
+
+`mvn install`
+
+Add to your project:
+
+```xml
+<dependency>
+	<groupId>org.m88i.camel</groupId>
+	<artifactId>camel-wordpress</artifactId>
+	<version>${camel-wordpress.version}</version>
+</dependency>
+
+```
+
+### Configure your route
+
+Use this code piece to set up your route:
+
+```java
+public void configure() {
+    final WordpressConfiguration configuration = new WordpressConfiguration();
+    final WordpressComponent component = new WordpressComponent();
+    configuration.setApiVersion("2");
+    configuration.setUrl("http://yoursite/wp-json/");
+    component.setConfiguration(configuration);
+    getContext().addComponent("wordpress", component);
+    
+    from("wordpress:post?id=1")
+      .to("mock:result");
+}
+```
+
+And you're set!
 
 ### Consumer
 
