@@ -28,6 +28,8 @@ abstract class AbstractWordpressServiceAdapter<A> implements WordpressService {
         this.api = JAXRSClientFactory.create(wordpressUrl, 
                                               this.getApiType(), 
                                               Collections.singletonList(new JacksonJsonProvider()));
+        // TODO: leave this kind of configuration to API clients
+        WebClient.getConfig(api).getHttpConduit().getClient().setAutoRedirect(true);
         this.apiVersion = apiVersion;
         //@formatter:on
         /*

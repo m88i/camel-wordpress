@@ -29,7 +29,7 @@ public class WordpressComponentTest extends WordpressMockServerTestSupport {
                 component.setConfiguration(configuration);
                 getContext().addComponent("wordpress", component);
                 
-                from("wordpress:post?id=1")
+                from("wordpress:post?id=114913")
                   .to("mock:result");
             }
         };
