@@ -27,7 +27,7 @@ import org.m88i.camel.component.wordpress.api.model.Order;
  *      API Reference</a>
  * @since 0.0.1
  */
-@Path("/")
+@Path("/wp")
 public interface CommentsAPI extends WordpressAPI<Comment> {
 
     //@formatter:off

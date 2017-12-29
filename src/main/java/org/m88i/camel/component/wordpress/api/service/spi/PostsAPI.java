@@ -25,7 +25,7 @@ import org.m88i.camel.component.wordpress.api.model.PublishableStatus;
  * @see <a href="https://developer.wordpress.org/rest-api/reference/posts/">Posts API Reference</a>
  * @since 0.0.1
  */
-@Path("/")
+@Path("/wp")
 public interface PostsAPI extends WordpressAPI<Post> {
 
     //@formatter:off

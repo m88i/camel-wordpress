@@ -12,8 +12,16 @@ Currently only the [Posts API](https://developer.wordpress.org/rest-api/referenc
 `wordpress:post` retrieves posts (defaults to 10 posts)  
 `wordpress:post?id=1` search for a specific post
 
+<!---
 ### Producer
 
 `wordpress:post` creates a new post from the `org.m88i.camel.component.wordpress.api.model.Post` class in the message body.  
 `wordpress:post?id=1` updates a post based on data `org.m88i.camel.component.wordpress.api.model.Post` from the message body.  
 `wordpress:post?id=1&operation=delete` deletes a specific post  
+-->
+
+## Future Releases
+
+- Custom Post Types 
+- API Authentication
+- Producers

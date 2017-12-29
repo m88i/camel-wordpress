@@ -31,7 +31,6 @@ public class WordpressConsumer extends ScheduledPollConsumer {
     @Override
     protected int poll() throws Exception {
         Exchange exchange = endpoint.createExchange();
-        // create a message body
         // @formatter:off
         exchange.getIn().setBody(WordpressMethodHelper
                                  .invokeMethod(endpoint.getWordpressService(), methodType, this.properties));

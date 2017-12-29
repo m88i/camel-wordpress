@@ -23,7 +23,7 @@ import org.m88i.camel.component.wordpress.api.model.TagOrderBy;
  *      API Reference</a>
  * @since 0.0.1
  */
-@Path("/")
+@Path("/wp")
 public interface TagsAPI extends WordpressAPI<Tag> {
 
     //@formatter:off

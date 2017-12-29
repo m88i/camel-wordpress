@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import org.m88i.camel.component.wordpress.api.model.Context;
 import org.m88i.camel.component.wordpress.api.model.Taxonomy;
 
-@Path("/")
+@Path("/wp")
 public interface TaxonomyAPI {
 
     //@formatter:off

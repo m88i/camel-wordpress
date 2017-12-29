@@ -4,26 +4,25 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.emptyCollectionOf;
-import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.WordpressTestConstants;
 import org.m88i.camel.component.wordpress.api.model.Post;
 import org.m88i.camel.component.wordpress.api.model.PostSearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
+import org.m88i.camel.component.wordpress.integration.WordpressMockServerTestSupport;
 import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
-public class WordpressServicePostsAdapterIT {
+public class WordpressServicePostsAdapterIT extends WordpressMockServerTestSupport {
 
     private static WordpressServicePosts servicePosts;
 
     @BeforeClass
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
-        serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
+        serviceProvider.init(getServerBaseUrl());
         servicePosts = serviceProvider.getService(WordpressServicePosts.class);
     }
 
@@ -38,9 +37,9 @@ public class WordpressServicePostsAdapterIT {
     public void testListPosts() {
         final PostSearchCriteria criteria = new PostSearchCriteria();
         criteria.setPage(1);
-        criteria.setPerPage(5);
+        criteria.setPerPage(10);
         final List<Post> posts = servicePosts.list(criteria);
         assertThat(posts, is(not(emptyCollectionOf(Post.class))));
-        assertThat(posts.size(), is(5));
+        assertThat(posts.size(), is(10));
     }
 }

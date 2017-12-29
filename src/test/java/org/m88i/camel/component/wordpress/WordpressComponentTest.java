@@ -4,13 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.WordpressComponent;
-import org.m88i.camel.component.wordpress.WordpressConstants;
 import org.m88i.camel.component.wordpress.config.WordpressConfiguration;
+import org.m88i.camel.component.wordpress.integration.WordpressMockServerTestSupport;
 
-public class WordpressComponentTest extends CamelTestSupport {
+public class WordpressComponentTest extends WordpressMockServerTestSupport {
 
     @Test
     public void testWordpress() throws Exception {
@@ -27,12 +25,11 @@ public class WordpressComponentTest extends CamelTestSupport {
                 final WordpressConfiguration configuration = new WordpressConfiguration();
                 final WordpressComponent component = new WordpressComponent();
                 configuration.setApiVersion(WordpressConstants.API_VERSION);
-                configuration.setUrl(WordpressTestConstants.WORDPRESS_DEMO_URL);
+                configuration.setUrl(getServerBaseUrl());
                 component.setConfiguration(configuration);
                 getContext().addComponent("wordpress", component);
                 
                 from("wordpress:post?id=1")
-                  .to("wordpress:post")
                   .to("mock:result");
             }
         };

@@ -21,7 +21,7 @@ import org.m88i.camel.component.wordpress.api.model.PostRevision;
  *      Revisions API Reference</a>
  * @since 0.0.1
  */
-@Path("/")
+@Path("/wp")
 public interface PostRevisionsAPI extends WordpressAPI<PostRevision> {
 
     //@formatter:off
