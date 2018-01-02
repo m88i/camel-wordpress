@@ -2,6 +2,8 @@ package org.m88i.camel.component.wordpress.api.model;
 
 public class PageSearchCriteria extends PublishableSearchCriteria {
 
+    private static final long serialVersionUID = -166997518779286003L;
+    
     private Integer menuOrder;
     private Integer parent;
     private Integer parentExclude;

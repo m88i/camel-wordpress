@@ -1,4 +1,4 @@
-package org.m88i.camel.component.wordpress.integration;
+package org.m88i.camel.component.wordpress.support;
 
 import java.io.IOException;
 import java.net.BindException;

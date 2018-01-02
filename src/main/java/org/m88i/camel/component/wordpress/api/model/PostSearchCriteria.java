@@ -4,6 +4,8 @@ import java.util.List;
 
 public class PostSearchCriteria extends PublishableSearchCriteria {
 
+    private static final long serialVersionUID = 2663161640460268421L;
+    
     private List<String> categories;
     private List<String> categoriesExclude;
     private List<String> tags;

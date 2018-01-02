@@ -3,6 +3,7 @@ package org.m88i.camel.component.wordpress;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
 import org.apache.camel.spi.Metadata;
@@ -24,6 +25,11 @@ public class WordpressComponent extends  DefaultComponent {
     
     public WordpressComponent(WordpressConfiguration configuration) {
         this.configuration = configuration;
+    }
+    
+    public WordpressComponent(CamelContext camelContext) {
+        super(camelContext);
+        this.configuration = new WordpressConfiguration();
     }
 
     protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {       

@@ -1,11 +1,13 @@
 package org.m88i.camel.component.wordpress.config;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriParams;
 import org.apache.camel.util.IntrospectionSupport;
+import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
 
 @UriParams
 public class WordpressEndpointConfiguration extends WordpressConfiguration {
@@ -15,9 +17,13 @@ public class WordpressEndpointConfiguration extends WordpressConfiguration {
 
     @UriParam(description = "The operation name. Required when the component can't figure out the operation by itself.")
     private String operation;
-    
-    public WordpressEndpointConfiguration() {
 
+    @UriParam(description = "The criteria to use with complex searches.", prefix = "criteria.", multiValue = true)
+    private Map<String, Object> criteriaProperties;
+
+    private SearchCriteria searchCriteria;
+
+    public WordpressEndpointConfiguration() {
     }
 
     /**
@@ -30,21 +36,47 @@ public class WordpressEndpointConfiguration extends WordpressConfiguration {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     /**
      * The operation name
+     * 
      * @return
      */
     public String getOperation() {
         return operation;
     }
-    
+
     public void setOperation(String operation) {
         this.operation = operation;
     }
-    
+
+    /**
+     * The search criteria
+     * 
+     * @return
+     */
+    public SearchCriteria getSearchCriteria() {
+        return searchCriteria;
+    }
+
+    public void setSearchCriteria(SearchCriteria searchCriteria) {
+        this.searchCriteria = searchCriteria;
+    }
+
+    public Map<String, Object> getCriteriaProperties() {
+        if(criteriaProperties != null) {
+            return Collections.unmodifiableMap(criteriaProperties);
+        }
+        return null;
+    }
+
+    public void setCriteriaProperties(Map<String, Object> criteriaProperties) {
+        this.criteriaProperties = Collections.unmodifiableMap(criteriaProperties);
+    }
+
     /**
      * Return all configuration properties on a map.
+     * 
      * @return
      */
     public Map<String, Object> asMap() {
@@ -52,6 +84,5 @@ public class WordpressEndpointConfiguration extends WordpressConfiguration {
         IntrospectionSupport.getProperties(this, map, null);
         return map;
     }
-    
 
 }

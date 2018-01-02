@@ -2,6 +2,8 @@ package org.m88i.camel.component.wordpress.api.model;
 
 public class CategorySearchCriteria extends ClassifierSearchCriteria {
 
+    private static final long serialVersionUID = 3124924225447605233L;
+    
     private CategoryOrderBy orderBy;
     private Integer parent;
 

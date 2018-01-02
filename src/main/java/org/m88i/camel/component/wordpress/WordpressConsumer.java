@@ -1,5 +1,6 @@
 package org.m88i.camel.component.wordpress;
 
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
@@ -29,20 +30,36 @@ public class WordpressConsumer extends ScheduledPollConsumer {
     }
 
     @Override
-    protected int poll() throws Exception {
-        Exchange exchange = endpoint.createExchange();
-        // @formatter:off
-        exchange.getIn().setBody(WordpressMethodHelper
-                                 .invokeMethod(endpoint.getWordpressService(), methodType, this.properties));
-        // @formatter:on
+    protected int poll() throws Exception {       
         try {
-            // send message to next processor in the route
+            // @formatter:off
+            final Object result = WordpressMethodHelper
+                .invokeMethod(endpoint.getWordpressService(), methodType, this.properties);
+            if(result instanceof Collection) {
+                for (Object r : (Collection<?>)result) {
+                    this.process(r);
+                }
+                return ((Collection<?>)result).size();
+            } else {
+                this.process(result);
+                return 1; // number of messages polled
+            }
+            // @formatter:on
+        } catch(Exception e) {
+            getExceptionHandler().handleException("Error calling inner Wordpress service", e);
+            return 0;
+        }
+    }
+    
+    protected void process(Object body) {
+        Exchange exchange = endpoint.createExchange();
+        try {
+            exchange.getIn().setBody(body);
             getProcessor().process(exchange);
-            return 1; // number of messages polled
-        } finally {
+        } catch(Exception e) {
             if (exchange.getException() != null) {
                 getExceptionHandler().handleException("Error processing exchange", exchange, exchange.getException());
-            }
+            }  
         }
     }
 }

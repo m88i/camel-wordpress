@@ -11,7 +11,9 @@ import org.apache.camel.spi.UriEndpoint;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
 import org.apache.camel.util.EndpointHelper;
+import org.apache.camel.util.IntrospectionSupport;
 import org.apache.camel.util.StringHelper;
+import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
@@ -75,6 +77,12 @@ public class WordpressEndpoint extends DefaultEndpoint {
             }
             EndpointHelper.setReferenceProperties(getCamelContext(), configuration, options);
             EndpointHelper.setProperties(getCamelContext(), configuration, options);
+            
+            if(configuration.getSearchCriteria() == null) {
+                final SearchCriteria searchCriteria = new SearchCriteria();           
+                IntrospectionSupport.setProperties(searchCriteria, options, "criteria.");
+                configuration.setSearchCriteria(searchCriteria);
+            }
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage(), e);
         }

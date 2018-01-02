@@ -2,6 +2,8 @@ package org.m88i.camel.component.wordpress.api.model;
 
 public abstract class ClassifierSearchCriteria extends SearchCriteria {
 
+    private static final long serialVersionUID = -4265001661257396589L;
+    
     private boolean hideEmpty;
     private Integer postId;
     private String slug;

@@ -11,12 +11,13 @@ import org.m88i.camel.component.wordpress.WordpressConstants;
 
 @UriParams
 public class WordpressConfiguration {
-    
-    @UriParam(description = "The Wordpress API URL from your site, e.g. http://myblog.com/wp-json/wp")
+
+    @UriParam(description = "The Wordpress API URL from your site, e.g. http://myblog.com/wp-json/")
     @Metadata(required = "true")
     private String url;
     @UriParam(defaultValue = WordpressConstants.API_VERSION)
     private String apiVersion;
+
     /**
      * Wordpress URL in {@link URI} format
      */
@@ -29,7 +30,7 @@ public class WordpressConfiguration {
     public String getUrl() {
         return url;
     }
-    
+
     public URI getUri() {
         return uri;
     }
@@ -45,7 +46,7 @@ public class WordpressConfiguration {
     public void setApiVersion(String apiVersion) {
         this.apiVersion = apiVersion;
     }
-    
+
     public void validate() {
         StringHelper.notEmpty(this.apiVersion, "apiVersion");
         StringHelper.notEmpty(this.url, "url");

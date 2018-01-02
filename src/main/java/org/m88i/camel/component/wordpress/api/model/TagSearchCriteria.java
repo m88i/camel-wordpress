@@ -4,6 +4,8 @@ import java.util.List;
 
 public class TagSearchCriteria extends ClassifierSearchCriteria {
 
+    private static final long serialVersionUID = 3602397960341909720L;
+    
     private List<Integer> offset;
     private TagOrderBy orderBy;
 

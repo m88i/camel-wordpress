@@ -32,7 +32,7 @@ public void configure() {
     final WordpressConfiguration configuration = new WordpressConfiguration();
     final WordpressComponent component = new WordpressComponent();
     configuration.setApiVersion("2");
-    configuration.setUrl("http://yoursite/wp-json/");
+    configuration.setUrl("http://yoursite.com/wp-json/");
     component.setConfiguration(configuration);
     getContext().addComponent("wordpress", component);
     

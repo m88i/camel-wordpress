@@ -24,14 +24,17 @@ abstract class AbstractWordpressServiceAdapter<A> implements WordpressService {
     
     AbstractWordpressServiceAdapter(final String wordpressUrl, final String apiVersion) {
         checkNotNull(emptyToNull(apiVersion));
+        this.apiVersion = apiVersion;
+
         //@formatter:off
         this.api = JAXRSClientFactory.create(wordpressUrl, 
                                               this.getApiType(), 
                                               Collections.singletonList(new JacksonJsonProvider()));
+        //@formatter:on
+        
         // TODO: leave this kind of configuration to API clients
         WebClient.getConfig(api).getHttpConduit().getClient().setAutoRedirect(true);
-        this.apiVersion = apiVersion;
-        //@formatter:on
+        
         /*
          * TODO: aggregate a configuration object to customize the JAXRS
          * behavior, eg.: adding handlers or interceptors

@@ -1,37 +1,28 @@
 package org.m88i.camel.component.wordpress;
 
-import java.util.concurrent.TimeUnit;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.config.WordpressConfiguration;
-import org.m88i.camel.component.wordpress.integration.WordpressMockServerTestSupport;
+import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
+import org.mockito.Mockito;
 
-public class WordpressComponentTest extends WordpressMockServerTestSupport {
+public class WordpressComponentTest {
 
     @Test
-    public void testWordpress() throws Exception {
-        MockEndpoint mock = getMockEndpoint("mock:result");
-        mock.expectedMinimumMessageCount(1);       
-        
-        assertMockEndpointsSatisfied(90, TimeUnit.SECONDS);
+    public void testParseUriPropertiesCriteria() throws Exception {
+        final WordpressComponent component = new WordpressComponent(Mockito.mock(CamelContext.class));
+        final WordpressEndpoint endpoint = (WordpressEndpoint)component
+            .createEndpoint("wordpress:post?apiVersion=2&url=http://mysite.com/&criteria.search=test&criteria.page=1&criteria.perPage=10");
+
+        assertThat(endpoint.getConfiguration().getSearchCriteria(), instanceOf(SearchCriteria.class));
+        assertNotNull(endpoint.getConfiguration().getSearchCriteria());
+        assertThat(endpoint.getConfiguration().getSearchCriteria().getPage(), is(1));
+        assertThat(endpoint.getConfiguration().getSearchCriteria().getPerPage(), is(10));
+        assertThat(endpoint.getConfiguration().getSearchCriteria().getSearch(), is("test"));
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            public void configure() {
-                final WordpressConfiguration configuration = new WordpressConfiguration();
-                final WordpressComponent component = new WordpressComponent();
-                configuration.setApiVersion(WordpressConstants.API_VERSION);
-                configuration.setUrl(getServerBaseUrl());
-                component.setConfiguration(configuration);
-                getContext().addComponent("wordpress", component);
-                
-                from("wordpress:post?id=114913")
-                  .to("mock:result");
-            }
-        };
-    }
 }
