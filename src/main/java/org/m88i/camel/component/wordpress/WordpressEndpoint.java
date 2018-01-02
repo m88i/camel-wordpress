@@ -1,6 +1,8 @@
 package org.m88i.camel.component.wordpress;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
@@ -81,8 +83,16 @@ public class WordpressEndpoint extends DefaultEndpoint {
             EndpointHelper.setProperties(getCamelContext(), configuration, options);
             
             if(configuration.getSearchCriteria() == null) {
-                final SearchCriteria searchCriteria = WordpressOperationType.valueOf(operation).getCriteriaType().newInstance();           
-                IntrospectionSupport.setProperties(searchCriteria, options, "criteria.");
+                final SearchCriteria searchCriteria = WordpressOperationType.valueOf(operation).getCriteriaType().newInstance();
+                Map<String, Object> criteriaOptions = IntrospectionSupport.extractProperties(options, "criteria.");
+                // any property that has a "," should be a List
+                criteriaOptions = criteriaOptions.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> {
+                    if(e != null && e.toString().indexOf(",") > -1) {
+                        return Arrays.asList(e.toString().split(","));
+                    }
+                    return e.getValue();
+                }));
+                IntrospectionSupport.setProperties(searchCriteria, criteriaOptions);
                 configuration.setSearchCriteria(searchCriteria);
             }
         } catch (Exception e) {

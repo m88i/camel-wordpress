@@ -42,7 +42,7 @@ public class WordpressPostOperationTest extends WordpressMockServerTestSupport {
                 component.setConfiguration(configuration);
                 getContext().addComponent("wordpress", component);
 
-                from("wordpress:post?criteria.perPage=10").to("mock:resultList");
+                from("wordpress:post?criteria.perPage=10&criteria.orderBy=author&criteria.categories=camel,dozer,json").to("mock:resultList");
 
                 from("wordpress:post?id=114913").to("mock:resultSingle");
             }
