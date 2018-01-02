@@ -12,30 +12,26 @@ import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
 import org.apache.camel.util.EndpointHelper;
 import org.apache.camel.util.IntrospectionSupport;
-import org.apache.camel.util.StringHelper;
 import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
-import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
+import org.m88i.camel.component.wordpress.consumer.WordpressPostConsumer;
+import org.m88i.camel.component.wordpress.proxy.WordpressOperationType;
 import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceType;
 
 /**
  * Represents a Wordpress endpoint.
  */
-@UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:service", consumerClass = WordpressConsumer.class, label = "Wordpress")
+@UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:operation", label = "Wordpress")
 public class WordpressEndpoint extends DefaultEndpoint {
 
     public static final String ENDPOINT_SERVICE_POST = "post";
 
-    @UriPath(description = "The endpoint service. Currently, only the 'post' service is supported.", enums = ENDPOINT_SERVICE_POST)
+    @UriPath(description = "The endpoint operation. Currently, only the 'post' operation is supported.", enums = ENDPOINT_SERVICE_POST)
     @Metadata(required = "true")
-    private String service;
+    private String operation;
 
     @UriParam
     private WordpressEndpointConfiguration configuration;
-
-    private WordpressService wordpressService;
-    private WordpressServiceType serviceType;
     
     public WordpressEndpoint(String uri, WordpressComponent component, WordpressEndpointConfiguration configuration) {
         super(uri, component);
@@ -46,16 +42,16 @@ public class WordpressEndpoint extends DefaultEndpoint {
         return configuration;
     }
     
-    public WordpressService getWordpressService() {
-        return wordpressService;
-    }
-    
-    public String getService() {
-        return service;
+    public String getOperation() {
+        return operation;
     }
 
-    public void setService(String method) {
-        this.service = method;
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+    
+    public boolean isSingleton() {
+        return true;
     }
     
     public Producer createProducer() throws Exception {
@@ -63,7 +59,13 @@ public class WordpressEndpoint extends DefaultEndpoint {
     }
 
     public Consumer createConsumer(Processor processor) throws Exception {
-        return new WordpressConsumer(this, processor);
+        switch (WordpressOperationType.valueOf(operation)) {
+        case post:
+            return new WordpressPostConsumer(this, processor);
+        default:
+            break;
+        }
+        throw new UnsupportedOperationException(String.format("Operation '%s' not supported.", operation));
     }
 
     @Override
@@ -79,7 +81,7 @@ public class WordpressEndpoint extends DefaultEndpoint {
             EndpointHelper.setProperties(getCamelContext(), configuration, options);
             
             if(configuration.getSearchCriteria() == null) {
-                final SearchCriteria searchCriteria = new SearchCriteria();           
+                final SearchCriteria searchCriteria = WordpressOperationType.valueOf(operation).getCriteriaType().newInstance();           
                 IntrospectionSupport.setProperties(searchCriteria, options, "criteria.");
                 configuration.setSearchCriteria(searchCriteria);
             }
@@ -92,25 +94,7 @@ public class WordpressEndpoint extends DefaultEndpoint {
     }
     
     private void initServiceProvider() {
-        this.configureMethodType();
         WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getApiVersion());
-        this.wordpressService = WordpressServiceProvider.getInstance().getService(serviceType.getServiceType());
     }
     
-    private void configureMethodType() {
-        StringHelper.notEmpty(this.service, "service");
-        if(!service.equals(ENDPOINT_SERVICE_POST)) {
-            throw new IllegalArgumentException(String.format("Invalid service, supported service type is: %s", ENDPOINT_SERVICE_POST));
-        }
-        this.serviceType = WordpressServiceType.fromMethodName(service);
-    }
-    
-    public boolean isSingleton() {
-        return true;
-    }
-    
-    public WordpressServiceType getServiceType() {
-        return serviceType;
-    }
-
 }

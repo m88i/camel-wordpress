@@ -38,7 +38,7 @@ public class WordpressComponent extends  DefaultComponent {
         WordpressEndpoint endpoint = new WordpressEndpoint(uri, this, endpointConfiguration);
         setProperties(endpoint, parameters);
         
-        endpoint.setService(remaining);
+        endpoint.setOperation(remaining);
         endpoint.configureProperties(parameters);
         
         return endpoint;
