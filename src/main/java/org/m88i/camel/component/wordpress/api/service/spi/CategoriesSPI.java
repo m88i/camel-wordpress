@@ -26,7 +26,7 @@ import org.m88i.camel.component.wordpress.api.model.Order;
  * @since 0.0.1
  */
 @Path("/wp")
-public interface CategoriesAPI extends WordpressAPI<Category> {
+public interface CategoriesSPI {
     
     //@formatter:off
     @GET

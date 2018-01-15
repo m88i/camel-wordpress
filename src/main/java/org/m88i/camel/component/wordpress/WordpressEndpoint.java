@@ -14,11 +14,11 @@ import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
 import org.apache.camel.util.EndpointHelper;
 import org.apache.camel.util.IntrospectionSupport;
+import org.m88i.camel.component.wordpress.api.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 import org.m88i.camel.component.wordpress.consumer.WordpressPostConsumer;
 import org.m88i.camel.component.wordpress.proxy.WordpressOperationType;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
 /**
  * Represents a Wordpress endpoint.

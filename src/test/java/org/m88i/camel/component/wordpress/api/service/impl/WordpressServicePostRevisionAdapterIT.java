@@ -14,23 +14,32 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
+import org.m88i.camel.component.wordpress.api.WordpressAPIConfiguration;
+import org.m88i.camel.component.wordpress.api.WordpressConstants;
+import org.m88i.camel.component.wordpress.api.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.api.auth.WordpressAuthentication;
+import org.m88i.camel.component.wordpress.api.auth.WordpressBasicAuthentication;
 import org.m88i.camel.component.wordpress.api.model.PostRevision;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePostRevision;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
+import org.m88i.camel.component.wordpress.api.test.WordpressMockServerTestSupport;
 
 /*
  * TODO fix authentication problem (when implementing global authentication) 
  * javax.ws.rs.NotAuthorizedException: HTTP 401 Unauthorized
  */
-@Ignore
-public class WordpressServicePostRevisionAdapterIT {
+@Ignore("Not implemented yet")
+public class WordpressServicePostRevisionAdapterIT extends WordpressMockServerTestSupport {
 
     private static WordpressServicePostRevision servicePostRevision;
 
     @BeforeClass
     public static void before() {
         final WordpressServiceProvider serviceProvider = WordpressServiceProvider.getInstance();
-        serviceProvider.init(WordpressTestConstants.WORDPRESS_DEMO_URL);
+        final WordpressAuthentication authentication = new WordpressBasicAuthentication("integration_test", "JD)e)Ox)z@HyDF*Dv4aWszm*");
+        final WordpressAPIConfiguration configuration = 
+            new WordpressAPIConfiguration(WordpressTestConstants.WORDPRESS4J__URL, WordpressConstants.API_VERSION);
+        configuration.setAuthentication(authentication);
+        serviceProvider.init(configuration);
         servicePostRevision = serviceProvider.getService(WordpressServicePostRevision.class);
     }
 

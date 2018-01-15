@@ -10,7 +10,7 @@ import org.apache.camel.util.IntrospectionSupport;
 import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
 
 @UriParams
-public class WordpressEndpointConfiguration extends WordpressConfiguration {
+public class WordpressEndpointConfiguration extends WordpressComponentConfiguration {
 
     @UriParam(description = "The entity ID. Should be passed when the operation performed requires a specific entity, e.g. deleting a post")
     private Integer id;

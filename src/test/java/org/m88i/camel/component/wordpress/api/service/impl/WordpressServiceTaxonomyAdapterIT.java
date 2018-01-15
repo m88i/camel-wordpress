@@ -9,12 +9,14 @@ import static org.junit.Assert.assertThat;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
+import org.m88i.camel.component.wordpress.api.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.api.model.Taxonomy;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceTaxonomy;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
+@Ignore("Not implemented yet")
 public class WordpressServiceTaxonomyAdapterIT {
 
     private static WordpressServiceTaxonomy serviceTaxonomy;

@@ -7,10 +7,10 @@ import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriParams;
 import org.apache.camel.util.StringHelper;
-import org.m88i.camel.component.wordpress.WordpressConstants;
+import org.m88i.camel.component.wordpress.api.WordpressConstants;
 
 @UriParams
-public class WordpressConfiguration {
+public class WordpressComponentConfiguration {
 
     @UriParam(description = "The Wordpress API URL from your site, e.g. http://myblog.com/wp-json/")
     @Metadata(required = "true")
@@ -23,7 +23,7 @@ public class WordpressConfiguration {
      */
     private URI uri;
 
-    public WordpressConfiguration() {
+    public WordpressComponentConfiguration() {
 
     }
 

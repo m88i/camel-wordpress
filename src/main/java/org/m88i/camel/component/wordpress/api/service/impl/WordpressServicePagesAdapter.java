@@ -11,19 +11,19 @@ import org.m88i.camel.component.wordpress.api.model.Page;
 import org.m88i.camel.component.wordpress.api.model.PageSearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePages;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
-import org.m88i.camel.component.wordpress.api.service.spi.PagesAPI;
-import org.m88i.camel.component.wordpress.api.service.spi.PostsAPI;
+import org.m88i.camel.component.wordpress.api.service.spi.PagesSPI;
+import org.m88i.camel.component.wordpress.api.service.spi.PostsSPI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * The {@link WordpressServicePosts} implementation. Aggregates the
- * {@link PostsAPI} interface using {@link JAXRSClientFactory} to make the API
+ * {@link PostsSPI} interface using {@link JAXRSClientFactory} to make the API
  * calls.
  * 
  * @since 0.0.1
  */
-public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAdapter<PagesAPI, Page> implements WordpressServicePages {
+public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAdapter<PagesSPI, Page, PageSearchCriteria> implements WordpressServicePages {
 
     public WordpressServicePagesAdapter(String wordpressUrl, String apiVersion) {
         super(wordpressUrl, apiVersion);
@@ -32,8 +32,8 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
     private static final Logger LOGGER = LoggerFactory.getLogger(WordpressServicePagesAdapter.class);
 
     @Override
-    protected Class<PagesAPI> getApiType() {
-        return PagesAPI.class;
+    protected Class<PagesSPI> getSpiType() {
+        return PagesSPI.class;
     }
 
     //@formatter:off
@@ -41,7 +41,7 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
     public List<Page> list(PageSearchCriteria c) {
         LOGGER.debug("Calling list pages: searchCriteria {}", c);
         checkNotNull(c, "Please provide a search criteria");
-        return getApi().list(this.getApiVersion(), 
+        return getSpi().list(this.getApiVersion(), 
                         c.getContext(), 
                         c.getPage(), 
                         c.getPerPage(), 
@@ -68,7 +68,27 @@ public class WordpressServicePagesAdapter extends AbstractWordpressCrudServiceAd
     public Page retrieve(Integer pageId, Context context, String password) {
         LOGGER.debug("Calling retrieve: postId {};  context: {}", pageId, context);
         checkArgument(pageId > 0, "Please provide a non zero post id");
-        return getApi().retrieve(this.getApiVersion(), pageId, context, password);
+        return getSpi().retrieve(this.getApiVersion(), pageId, context, password);
+    }
+
+    @Override
+    protected Page doCreate(Page object) {
+        return getSpi().create(getApiVersion(), object);
+    }
+
+    @Override
+    protected void doDelete(Integer id, Boolean force) {
+        getSpi().delete(getApiVersion(), id, force);
+    }
+
+    @Override
+    protected Page doUpdate(Integer id, Page object) {
+        return getSpi().update(getApiVersion(), id, object);
+    }
+
+    @Override
+    protected Page doRetrieve(Integer entityID, Context context) {
+        return getSpi().retrieve(getApiVersion(), entityID, context, null);
     }
 
 }

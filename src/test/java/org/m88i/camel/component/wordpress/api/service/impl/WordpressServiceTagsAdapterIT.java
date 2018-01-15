@@ -10,13 +10,15 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.m88i.camel.component.wordpress.WordpressTestConstants;
+import org.m88i.camel.component.wordpress.api.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.api.model.Tag;
 import org.m88i.camel.component.wordpress.api.model.TagSearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceTags;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
+@Ignore("Not implemented yet")
 public class WordpressServiceTagsAdapterIT {
 
     private static WordpressServiceTags serviceTags;

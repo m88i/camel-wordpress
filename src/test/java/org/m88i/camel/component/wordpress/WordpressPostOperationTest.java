@@ -3,11 +3,11 @@ package org.m88i.camel.component.wordpress;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
+import org.m88i.camel.component.wordpress.api.WordpressConstants;
 import org.m88i.camel.component.wordpress.api.model.Post;
-import org.m88i.camel.component.wordpress.config.WordpressConfiguration;
-import org.m88i.camel.component.wordpress.support.WordpressMockServerTestSupport;
+import org.m88i.camel.component.wordpress.config.WordpressComponentConfiguration;
 
-public class WordpressPostOperationTest extends WordpressMockServerTestSupport {
+public class WordpressPostOperationTest extends WordpressComponentTestSupport {
 
     public WordpressPostOperationTest() {
 
@@ -35,7 +35,7 @@ public class WordpressPostOperationTest extends WordpressMockServerTestSupport {
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             public void configure() {
-                final WordpressConfiguration configuration = new WordpressConfiguration();
+                final WordpressComponentConfiguration configuration = new WordpressComponentConfiguration();
                 final WordpressComponent component = new WordpressComponent();
                 configuration.setApiVersion(WordpressConstants.API_VERSION);
                 configuration.setUrl(getServerBaseUrl());

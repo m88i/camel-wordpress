@@ -15,73 +15,74 @@ import javax.ws.rs.core.MediaType;
 
 import org.m88i.camel.component.wordpress.api.model.Context;
 import org.m88i.camel.component.wordpress.api.model.Order;
-import org.m88i.camel.component.wordpress.api.model.Post;
-import org.m88i.camel.component.wordpress.api.model.PostOrderBy;
+import org.m88i.camel.component.wordpress.api.model.Page;
+import org.m88i.camel.component.wordpress.api.model.PageOrderBy;
 import org.m88i.camel.component.wordpress.api.model.PublishableStatus;
 
 /**
- * Describes the Wordpress Posts API.
+ * Describes the Wordpress Pages API.
  * 
- * @see <a href="https://developer.wordpress.org/rest-api/reference/posts/">Posts API Reference</a>
+ * @see <a href=
+ *      "https://developer.wordpress.org/rest-api/reference/pages/">Pages API
+ *      Reference</a>
  * @since 0.0.1
  */
 @Path("/wp")
-public interface PostsAPI extends WordpressAPI<Post> {
+public interface PagesSPI {
 
     //@formatter:off
     @GET
-    @Path("/v{apiVersion}/posts")
+    @Path("/v{apiVersion}/pages")
     @Produces(MediaType.APPLICATION_JSON)
-    List<Post> list(@PathParam("apiVersion") String apiVersion,
+    List<Page> list(@PathParam("apiVersion") String apiVersion,
                          @QueryParam("context") Context context, 
                          @QueryParam("page") Integer page, 
                          @QueryParam("per_page") Integer perPage, 
                          @QueryParam("search") String search, 
-                         @QueryParam("after") Date after, 
+                         @QueryParam("after") Date after,       
                          @QueryParam("author") List<Integer> author,
                          @QueryParam("author_exclude") List<Integer> authorExclude,
                          @QueryParam("before") Date before,
                          @QueryParam("exclude") List<Integer> exclude, 
                          @QueryParam("include") List<Integer> include,
+                         @QueryParam("menu_order") Integer menuOrder,
                          @QueryParam("offset") List<Integer> offset,
                          @QueryParam("order") Order order,
-                         @QueryParam("orderby") PostOrderBy orderBy,
+                         @QueryParam("orderby") PageOrderBy orderBy,
+                         @QueryParam("parent") Integer parent,
+                         @QueryParam("parent_exclude") Integer parentExclude,
                          @QueryParam("slug") List<String> slug,
                          @QueryParam("status") PublishableStatus status,
-                         @QueryParam("categories") List<String> categories,
-                         @QueryParam("categories_exclude") List<String> categoriesExclude,
-                         @QueryParam("tags") List<String> tags,
-                         @QueryParam("tags_exclude") List<String> tagsExclude,
-                         @QueryParam("stick") Boolean stick);
+                         @QueryParam("filter") String filter);
     
     //@formatter:off
     @GET
-    @Path("/v{apiVersion}/posts/{postId}")
+    @Path("/v{apiVersion}/pages/{pageId}")
     @Produces(MediaType.APPLICATION_JSON)
-    Post retrieve(@PathParam("apiVersion") String apiVersion, 
-                      @PathParam("postId") int postId, 
+    Page retrieve(@PathParam("apiVersion") String apiVersion, 
+                      @PathParam("pageId") int pageId, 
                       @QueryParam("context") Context context, 
                       @QueryParam("password") String password);
     //@formatter:on
     @POST
-    @Path("/v{apiVersion}/posts")
+    @Path("/v{apiVersion}/pages")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Post create(@PathParam("apiVersion") String apiVersion, Post post);
+    Page create(@PathParam("apiVersion") String apiVersion, Page page);
 
     //@formatter:off
     @POST
-    @Path("/v{apiVersion}/posts/{postId}")
+    @Path("/v{apiVersion}/pages/{pageId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Post update(@PathParam("apiVersion") String apiVersion, 
-                @PathParam("postId") int postId, 
-                Post post);
+    Page update(@PathParam("apiVersion") String apiVersion, 
+                @PathParam("pageId") int pageId, 
+                Page page);
 
     @DELETE
-    @Path("/v{apiVersion}/posts/{postId}")
+    @Path("/v{apiVersion}/pages/{pageId}")
     void delete(@PathParam("apiVersion") String apiVersion, 
-                @PathParam("postId") int postId, 
+                @PathParam("pageId") int pageId, 
                 @QueryParam("force") boolean force);
 
 }

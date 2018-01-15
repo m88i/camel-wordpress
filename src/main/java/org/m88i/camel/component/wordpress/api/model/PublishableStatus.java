@@ -1,10 +1,12 @@
 package org.m88i.camel.component.wordpress.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * A named status for the object.
  */
+@JacksonXmlRootElement(localName = "publishableStatus")
 public enum PublishableStatus {
     //@formatter:off
     publish, 

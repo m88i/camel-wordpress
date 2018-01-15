@@ -1,6 +1,5 @@
 package org.m88i.camel.component.wordpress.api.service.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
@@ -9,24 +8,24 @@ import org.m88i.camel.component.wordpress.api.model.Comment;
 import org.m88i.camel.component.wordpress.api.model.CommentSearchCriteria;
 import org.m88i.camel.component.wordpress.api.model.Context;
 import org.m88i.camel.component.wordpress.api.service.WordpressServiceComments;
-import org.m88i.camel.component.wordpress.api.service.spi.CommentsAPI;
+import org.m88i.camel.component.wordpress.api.service.spi.CommentsSPI;
 
-public class WordpressServiceCommentsAdapter extends AbstractWordpressCrudServiceAdapter<CommentsAPI, Comment> implements WordpressServiceComments {
+public class WordpressServiceCommentsAdapter extends AbstractWordpressCrudServiceAdapter<CommentsSPI, Comment, CommentSearchCriteria> implements WordpressServiceComments {
 
     public WordpressServiceCommentsAdapter(final String wordpressUrl, final String apiVersion) {
         super(wordpressUrl, apiVersion);
     }
 
     @Override
-    protected Class<CommentsAPI> getApiType() {
-        return CommentsAPI.class;
+    protected Class<CommentsSPI> getSpiType() {
+        return CommentsSPI.class;
     }
 
     //@formatter:off
     @Override
     public List<Comment> list(CommentSearchCriteria c) {
         checkNotNull(c, "The search criteria must be defined");
-        return getApi().list(this.getApiVersion(),
+        return getSpi().list(this.getApiVersion(),
                              c.getContext(),
                              c.getPage(),
                              c.getPerPage(),
@@ -51,9 +50,23 @@ public class WordpressServiceCommentsAdapter extends AbstractWordpressCrudServic
     //@formatter:on
 
     @Override
-    public Comment retrieve(Integer id, Context context) {
-        checkArgument(id > 0, "Please define a comment id");
-        return getApi().retrieve(this.getApiVersion(), id, context);
+    protected Comment doCreate(Comment object) {
+        return getSpi().create(getApiVersion(), object);
+    }
+
+    @Override
+    protected void doDelete(Integer id, Boolean force) {
+        getSpi().delete(getApiVersion(), id, force);
+    }
+
+    @Override
+    protected Comment doUpdate(Integer id, Comment object) {
+        return getSpi().update(getApiVersion(), id, object);
+    }
+
+    @Override
+    protected Comment doRetrieve(Integer entityID, Context context) {
+        return getSpi().retrieve(getApiVersion(), entityID, context);
     }
 
 }

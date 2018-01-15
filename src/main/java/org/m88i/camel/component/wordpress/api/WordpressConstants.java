@@ -1,4 +1,4 @@
-package org.m88i.camel.component.wordpress;
+package org.m88i.camel.component.wordpress.api;
 
 public final class WordpressConstants {
 

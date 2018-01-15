@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 /**
  * The Wordpress rendered content
  */
+@JacksonXmlRootElement(localName = "content")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Content implements Serializable {
 
@@ -20,6 +22,10 @@ public class Content implements Serializable {
 
     public Content() {
 
+    }
+    
+    public Content(String rendered) {
+        this.rendered = rendered;
     }
 
     public String getRendered() {

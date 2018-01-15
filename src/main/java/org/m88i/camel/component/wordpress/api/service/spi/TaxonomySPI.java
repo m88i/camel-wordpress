@@ -13,7 +13,7 @@ import org.m88i.camel.component.wordpress.api.model.Context;
 import org.m88i.camel.component.wordpress.api.model.Taxonomy;
 
 @Path("/wp")
-public interface TaxonomyAPI {
+public interface TaxonomySPI {
 
     //@formatter:off
     @GET

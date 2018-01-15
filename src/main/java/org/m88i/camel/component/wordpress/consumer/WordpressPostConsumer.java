@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.camel.Processor;
 import org.m88i.camel.component.wordpress.WordpressEndpoint;
+import org.m88i.camel.component.wordpress.api.WordpressServiceProvider;
 import org.m88i.camel.component.wordpress.api.model.Post;
 import org.m88i.camel.component.wordpress.api.model.PostSearchCriteria;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
-import org.m88i.camel.component.wordpress.proxy.WordpressServiceProvider;
 
 /**
  * Consumer for Posts. Adapter for {@link WordpressServicePosts} read only methods (list and retrieve).

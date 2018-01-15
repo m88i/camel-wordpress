@@ -8,7 +8,7 @@ import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.util.IntrospectionSupport;
-import org.m88i.camel.component.wordpress.config.WordpressConfiguration;
+import org.m88i.camel.component.wordpress.config.WordpressComponentConfiguration;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 
 /**
@@ -17,19 +17,19 @@ import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 public class WordpressComponent extends  DefaultComponent {
     
     @Metadata(label = "advanced")
-    private WordpressConfiguration configuration;
+    private WordpressComponentConfiguration configuration;
     
     public WordpressComponent() {
-        this(new WordpressConfiguration());
+        this(new WordpressComponentConfiguration());
     }
     
-    public WordpressComponent(WordpressConfiguration configuration) {
+    public WordpressComponent(WordpressComponentConfiguration configuration) {
         this.configuration = configuration;
     }
     
     public WordpressComponent(CamelContext camelContext) {
         super(camelContext);
-        this.configuration = new WordpressConfiguration();
+        this.configuration = new WordpressComponentConfiguration();
     }
 
     protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {       
@@ -44,11 +44,11 @@ public class WordpressComponent extends  DefaultComponent {
         return endpoint;
     }
     
-    public WordpressConfiguration getConfiguration() {
+    public WordpressComponentConfiguration getConfiguration() {
         return configuration;
     }
     
-    public void setConfiguration(WordpressConfiguration configuration) {
+    public void setConfiguration(WordpressComponentConfiguration configuration) {
         this.configuration = configuration;
     }
     
