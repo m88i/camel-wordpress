@@ -8,7 +8,9 @@ import java.util.HashMap;
 
 import org.m88i.camel.component.wordpress.api.service.WordpressService;
 import org.m88i.camel.component.wordpress.api.service.WordpressServicePosts;
+import org.m88i.camel.component.wordpress.api.service.WordpressServiceUsers;
 import org.m88i.camel.component.wordpress.api.service.impl.WordpressServicePostsAdapter;
+import org.m88i.camel.component.wordpress.api.service.impl.WordpressServiceUsersAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +35,7 @@ public class WordpressServiceProvider {
     public void init(String wordpressApiUrl) {
         this.init(wordpressApiUrl, WordpressConstants.API_VERSION);
     }
-    
+
     public void init(String wordpressApiUrl, String apiVersion) {
         this.init(new WordpressAPIConfiguration(wordpressApiUrl, apiVersion));
     }
@@ -46,18 +48,25 @@ public class WordpressServiceProvider {
         }
 
         final WordpressServicePosts servicePosts = new WordpressServicePostsAdapter(config.getApiUrl(), config.getApiVersion());
-        
+        final WordpressServiceUsers serviceUsers = new WordpressServiceUsersAdapter(config.getApiUrl(), config.getApiVersion());
+
         servicePosts.setWordpressAuthentication(config.getAuthentication());
+        serviceUsers.setWordpressAuthentication(config.getAuthentication());
         
         this.services = new HashMap<>();
         this.services.put(WordpressServicePosts.class, servicePosts);
+        this.services.put(WordpressServiceUsers.class, serviceUsers);
 
         LOGGER.info("Wordpress Service Provider initialized using base URL: {}, API Version {}", config.getApiUrl(), config.getApiVersion());
     }
 
     @SuppressWarnings("unchecked")
     public <T extends WordpressService> T getService(Class<T> wordpressServiceClazz) {
-        return (T)this.services.get(wordpressServiceClazz);
+        T service = (T)this.services.get(wordpressServiceClazz);
+        if (service == null) {
+            throw new IllegalArgumentException(String.format("Couldn't find a Wordpress Service '%s'", wordpressServiceClazz));
+        }
+        return service;
     }
 
 }

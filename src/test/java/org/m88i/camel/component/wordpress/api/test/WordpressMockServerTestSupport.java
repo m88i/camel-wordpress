@@ -54,13 +54,21 @@ public abstract class WordpressMockServerTestSupport {
         
         final Map<String, String> postsSingleUpdateRequestHandlers = new HashMap<String, String>();
         postsSingleUpdateRequestHandlers.put("GET", "/data/posts/single.json");
-        postsSingleUpdateRequestHandlers.put("POST", "/data/posts/update.json");
+        
+        final Map<String, String> usersListCreateRequestHandlers = new HashMap<>();
+        usersListCreateRequestHandlers.put("GET", "/data/users/list.json");
+        usersListCreateRequestHandlers.put("POST", "/data/users/create.json");
+        
+        final Map<String, String> usersSingleUpdateRequestHandlers = new HashMap<String, String>();
+        usersSingleUpdateRequestHandlers.put("GET", "/data/users/single.json");
         
         // @formatter:off
         return ServerBootstrap.bootstrap()
             .setListenerPort(port)
             .registerHandler("/wp/v2/posts", new WordpressServerHttpRequestHandler(postsListCreateRequestHandlers))
             .registerHandler("/wp/v2/posts/*", new WordpressServerHttpRequestHandler(postsSingleUpdateRequestHandlers))
+            .registerHandler("/wp/v2/users", new WordpressServerHttpRequestHandler(usersListCreateRequestHandlers))
+            .registerHandler("/wp/v2/users/*", new WordpressServerHttpRequestHandler(usersSingleUpdateRequestHandlers))
             .create();
         // @formatter:on
     }

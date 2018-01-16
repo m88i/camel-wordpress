@@ -6,12 +6,14 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+@JacksonXmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
-    
+
     private static final long serialVersionUID = 4247427179764560935L;
-    
+
     private Integer id;
     private String username;
     private String name;
@@ -29,14 +31,14 @@ public class User implements Serializable {
     @JsonProperty("registered_date")
     private String registeredDate;
     private List<String> roles;
-    private List<Map<String, String>> capabilities; 
+    private Map<String, String> capabilities;
     @JsonProperty("extra_capabilities")
-    private List<Map<String, String>> extraCapabilities; 
+    private Map<String, String> extraCapabilities;
     @JsonProperty("avatar_urls")
-    private List<Map<String, String>> avatarUrls; 
+    private Map<String, String> avatarUrls;
     @JsonProperty("meta")
-    private List<Map<String, String>> meta; 
-    
+    private List<Map<String, String>> meta;
+
     public User() {
 
     }
@@ -153,27 +155,27 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public List<Map<String, String>> getCapabilities() {
+    public Map<String, String> getCapabilities() {
         return capabilities;
     }
 
-    public void setCapabilities(List<Map<String, String>> capabilities) {
+    public void setCapabilities(Map<String, String> capabilities) {
         this.capabilities = capabilities;
     }
 
-    public List<Map<String, String>> getExtraCapabilities() {
+    public Map<String, String> getExtraCapabilities() {
         return extraCapabilities;
     }
 
-    public void setExtraCapabilities(List<Map<String, String>> extraCapabilities) {
+    public void setExtraCapabilities(Map<String, String> extraCapabilities) {
         this.extraCapabilities = extraCapabilities;
     }
 
-    public List<Map<String, String>> getAvatarUrls() {
+    public Map<String, String> getAvatarUrls() {
         return avatarUrls;
     }
 
-    public void setAvatarUrls(List<Map<String, String>> avatarUrls) {
+    public void setAvatarUrls(Map<String, String> avatarUrls) {
         this.avatarUrls = avatarUrls;
     }
 
