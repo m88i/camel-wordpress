@@ -3,9 +3,9 @@ package org.m88i.camel.component.wordpress;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.api.WordpressConstants;
-import org.m88i.camel.component.wordpress.api.model.Post;
 import org.m88i.camel.component.wordpress.config.WordpressComponentConfiguration;
+import org.wordpress4j.WordpressConstants;
+import org.wordpress4j.model.Post;
 
 public class WordpressPostOperationTest extends WordpressComponentTestSupport {
 

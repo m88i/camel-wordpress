@@ -1,7 +1,7 @@
 package org.m88i.camel.component.wordpress.proxy;
 
-import org.m88i.camel.component.wordpress.api.model.PostSearchCriteria;
-import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
+import org.wordpress4j.model.PostSearchCriteria;
+import org.wordpress4j.model.SearchCriteria;
 
 public enum WordpressOperationType {
 

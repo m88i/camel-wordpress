@@ -7,7 +7,7 @@ import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriParams;
 import org.apache.camel.util.StringHelper;
-import org.m88i.camel.component.wordpress.api.WordpressConstants;
+import org.wordpress4j.WordpressConstants;
 
 @UriParams
 public class WordpressComponentConfiguration {

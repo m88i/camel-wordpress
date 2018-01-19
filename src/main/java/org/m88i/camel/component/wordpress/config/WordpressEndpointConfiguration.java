@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriParams;
 import org.apache.camel.util.IntrospectionSupport;
-import org.m88i.camel.component.wordpress.api.model.SearchCriteria;
+import org.wordpress4j.model.SearchCriteria;
 
 @UriParams
 public class WordpressEndpointConfiguration extends WordpressComponentConfiguration {

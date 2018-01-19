@@ -10,11 +10,11 @@ import static org.junit.Assert.assertThat;
 
 import org.apache.camel.CamelContext;
 import org.junit.Test;
-import org.m88i.camel.component.wordpress.api.model.PostOrderBy;
-import org.m88i.camel.component.wordpress.api.model.PostSearchCriteria;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wordpress4j.model.PostOrderBy;
+import org.wordpress4j.model.PostSearchCriteria;
 
 public class WordpressComponentTest {
     

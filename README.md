@@ -51,8 +51,8 @@ And you're set!
 <!---
 ### Producer
 
-`wordpress:post` creates a new post from the `org.m88i.camel.component.wordpress.api.model.Post` class in the message body.  
-`wordpress:post?id=1` updates a post based on data `org.m88i.camel.component.wordpress.api.model.Post` from the message body.  
+`wordpress:post` creates a new post from the `org.wordpress4j.model.Post` class in the message body.  
+`wordpress:post?id=1` updates a post based on data `org.wordpress4j.model.Post` from the message body.  
 `wordpress:post?id=1&operation=delete` deletes a specific post  
 -->
 
