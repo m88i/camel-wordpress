@@ -17,6 +17,10 @@ public class WordpressComponentConfiguration {
     private String url;
     @UriParam(defaultValue = WordpressConstants.API_VERSION)
     private String apiVersion;
+    @UriParam(description = "The user used to authenticate with Basic Auth")
+    private String user;
+    @UriParam(description = "The password used to authenticate with Basic Auth")
+    private String password;
 
     /**
      * Wordpress URL in {@link URI} format
@@ -45,6 +49,22 @@ public class WordpressComponentConfiguration {
 
     public void setApiVersion(String apiVersion) {
         this.apiVersion = apiVersion;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getUser() {
+        return user;
+    }
+    
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void validate() {

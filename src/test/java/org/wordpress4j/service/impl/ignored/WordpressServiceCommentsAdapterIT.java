@@ -1,4 +1,4 @@
-package org.wordpress4j.service.impl;
+package org.wordpress4j.service.impl.ignored;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -19,7 +19,7 @@ import org.wordpress4j.model.CategorySearchCriteria;
 import org.wordpress4j.service.WordpressServiceCategories;
 
 @Ignore("Not implemented yet")
-public class WordpressServiceCategoriesAdapterIT {
+public class WordpressServiceCommentsAdapterIT {
 
     private static WordpressServiceCategories serviceCategories;
 

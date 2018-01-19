@@ -47,8 +47,8 @@ public class WordpressServiceCategoriesAdapter extends AbstractWordpressCrudServ
     }
 
     @Override
-    protected void doDelete(Integer id, Boolean force) {
-        getSpi().delete(getApiVersion(), id, force);
+    protected Category doDelete(Integer id) {
+        return getSpi().delete(getApiVersion(), id, false);
     }
 
     @Override

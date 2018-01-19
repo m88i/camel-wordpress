@@ -14,44 +14,53 @@ import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 /**
  * Represents the component that manages {@link WordpressEndpoint}.
  */
-public class WordpressComponent extends  DefaultComponent {
-    
+public class WordpressComponent extends DefaultComponent {
+
+    private static final String OP_SEPARATOR = ":";
+
     @Metadata(label = "advanced")
     private WordpressComponentConfiguration configuration;
-    
+
     public WordpressComponent() {
         this(new WordpressComponentConfiguration());
     }
-    
+
     public WordpressComponent(WordpressComponentConfiguration configuration) {
         this.configuration = configuration;
     }
-    
+
     public WordpressComponent(CamelContext camelContext) {
         super(camelContext);
         this.configuration = new WordpressComponentConfiguration();
     }
 
-    protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {       
-        final WordpressEndpointConfiguration endpointConfiguration = this.copyComponentProperties();
-        
-        WordpressEndpoint endpoint = new WordpressEndpoint(uri, this, endpointConfiguration);
-        setProperties(endpoint, parameters);
-        
-        endpoint.setOperation(remaining);
-        endpoint.configureProperties(parameters);
-        
-        return endpoint;
-    }
-    
     public WordpressComponentConfiguration getConfiguration() {
         return configuration;
     }
-    
+
     public void setConfiguration(WordpressComponentConfiguration configuration) {
         this.configuration = configuration;
     }
-    
+
+    protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {
+        final WordpressEndpointConfiguration endpointConfiguration = this.copyComponentProperties();
+
+        WordpressEndpoint endpoint = new WordpressEndpoint(uri, this, endpointConfiguration);
+        setProperties(endpoint, parameters);
+
+        this.discoverOperations(endpoint, remaining);
+        endpoint.configureProperties(parameters);
+
+        return endpoint;
+    }
+
+    private void discoverOperations(WordpressEndpoint endpoint, String remaining) {
+        final String[] operations = remaining.split(OP_SEPARATOR);
+        endpoint.setOperation(operations[0]);
+        if (operations.length > 1) {
+            endpoint.setOperationDetail(operations[1]);
+        }
+    }
 
     private WordpressEndpointConfiguration copyComponentProperties() throws Exception {
         Map<String, Object> componentProperties = new HashMap<String, Object>();

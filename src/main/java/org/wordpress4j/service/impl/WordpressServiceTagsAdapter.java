@@ -47,8 +47,8 @@ public class WordpressServiceTagsAdapter extends AbstractWordpressCrudServiceAda
     }
 
     @Override
-    protected void doDelete(Integer id, Boolean force) {
-        getSpi().delete(getApiVersion(), id, force);
+    protected Tag doDelete(Integer id) {
+        return getSpi().delete(getApiVersion(), id, false);
     }
 
     @Override

@@ -14,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.Order;
 import org.wordpress4j.model.Post;
 import org.wordpress4j.model.PostOrderBy;
@@ -22,7 +23,9 @@ import org.wordpress4j.model.PublishableStatus;
 /**
  * Describes the Wordpress Posts API.
  * 
- * @see <a href="https://developer.wordpress.org/rest-api/reference/posts/">Posts API Reference</a>
+ * @see <a href=
+ *      "https://developer.wordpress.org/rest-api/reference/posts/">Posts API
+ *      Reference</a>
  * @since 0.0.1
  */
 @Path("/wp")
@@ -80,8 +83,13 @@ public interface PostsSPI {
 
     @DELETE
     @Path("/v{apiVersion}/posts/{postId}")
-    void delete(@PathParam("apiVersion") String apiVersion, 
-                @PathParam("postId") int postId, 
-                @QueryParam("force") boolean force);
+    Post delete(@PathParam("apiVersion") String apiVersion, 
+                @PathParam("postId") int postId);
+    
+
+    @DELETE
+    @Path("/v{apiVersion}/posts/{postId}?force=true")
+    DeletedModel<Post> forceDelete(@PathParam("apiVersion") String apiVersion, 
+                @PathParam("postId") int postId);
 
 }

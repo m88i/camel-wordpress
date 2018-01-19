@@ -16,6 +16,7 @@ public class Content implements Serializable {
     private static final long serialVersionUID = -6355688058047458932L;
 
     private String rendered;
+    private String raw;
 
     @JsonProperty("protected")
     private Boolean protected_;
@@ -42,6 +43,14 @@ public class Content implements Serializable {
 
     public void setProtected_(Boolean protected_) {
         this.protected_ = protected_;
+    }
+    
+    public String getRaw() {
+        return raw;
+    }
+    
+    public void setRaw(String raw) {
+        this.raw = raw;
     }
 
     @Override

@@ -48,16 +48,21 @@ And you're set!
 `wordpress:post` retrieves posts (defaults to 10 posts)  
 `wordpress:post?id=1` search for a specific post
 
-<!---
 ### Producer
 
 `wordpress:post` creates a new post from the `org.wordpress4j.model.Post` class in the message body.  
 `wordpress:post?id=1` updates a post based on data `org.wordpress4j.model.Post` from the message body.  
-`wordpress:post?id=1&operation=delete` deletes a specific post  
--->
+`wordpress:post:delete?id=1` deletes a specific post  
+
+## Authentication
+
+TODO
+
+## Examples
+
+TODO
 
 ## Future Releases
 
-- Custom Post Types 
-- API Authentication
-- Producers
+- Custom Namespaces 
+- More Wordpress API endpoints e.g. Media, Comments, etc.

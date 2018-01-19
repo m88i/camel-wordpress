@@ -71,7 +71,7 @@ public interface UsersSPI {
      */
     @DELETE
     @Path("/v{apiVersion}/tags/{id}")
-    void delete(@PathParam("apiVersion") String apiVersion,
+    User delete(@PathParam("apiVersion") String apiVersion,
                @PathParam("id") Integer id,
                @QueryParam("force") boolean force,
                @QueryParam("reassign") Integer reassignId);

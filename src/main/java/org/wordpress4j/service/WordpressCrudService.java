@@ -3,6 +3,7 @@ package org.wordpress4j.service;
 import java.util.List;
 
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.SearchCriteria;
 
 /**
@@ -19,7 +20,9 @@ public interface WordpressCrudService<T, S extends SearchCriteria> extends Wordp
     
     T create(T entity);
 
-    void delete(Integer entityID, Boolean force);
+    T delete(Integer entityID);
+    
+    DeletedModel<T> forceDelete(Integer entityID);
 
     List<T> list(S searchCriteria);
 

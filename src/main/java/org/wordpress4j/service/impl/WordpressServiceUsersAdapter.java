@@ -43,8 +43,8 @@ public class WordpressServiceUsersAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
-    protected void doDelete(Integer id, Boolean force) {
-        getSpi().delete(getApiVersion(), id, force, 1);
+    protected User doDelete(Integer id) {
+        return getSpi().delete(getApiVersion(), id, false, 1);
     }
 
     @Override

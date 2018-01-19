@@ -12,14 +12,14 @@ import org.wordpress4j.model.SearchCriteria;
 @UriParams
 public class WordpressEndpointConfiguration extends WordpressComponentConfiguration {
 
-    @UriParam(description = "The entity ID. Should be passed when the operation performed requires a specific entity, e.g. deleting a post")
+    @UriParam(description = "The entity ID. Should be passed when the operation performed requires a specific entity, e.g. deleting a post", javaType = "java.lang.Integer")
     private Integer id;
-
-    @UriParam(description = "The operation name. Required when the component can't figure out the operation by itself.")
-    private String operation;
 
     @UriParam(description = "The criteria to use with complex searches.", prefix = "criteria.", multiValue = true)
     private Map<String, Object> criteriaProperties;
+    
+    @UriParam(description = "Whether to bypass trash and force deletion.", defaultValue = "false", javaType = "java.lang.Boolean")
+    private Boolean force = false;
 
     private SearchCriteria searchCriteria;
 
@@ -36,18 +36,13 @@ public class WordpressEndpointConfiguration extends WordpressComponentConfigurat
     public void setId(Integer id) {
         this.id = id;
     }
-
-    /**
-     * The operation name
-     * 
-     * @return
-     */
-    public String getOperation() {
-        return operation;
+    
+    public Boolean isForce() {
+        return force;
     }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
+    
+    public void setForce(Boolean force) {
+        this.force = force;
     }
 
     /**

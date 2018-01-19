@@ -17,8 +17,9 @@ import org.wordpress4j.service.impl.WordpressServiceUsersAdapter;
 public class WordpressServiceProvider {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WordpressServiceProvider.class);
-
+    
     private HashMap<Class<? extends WordpressService>, WordpressService> services;
+    private WordpressAPIConfiguration configuration;
 
     private WordpressServiceProvider() {
 
@@ -67,6 +68,13 @@ public class WordpressServiceProvider {
             throw new IllegalArgumentException(String.format("Couldn't find a Wordpress Service '%s'", wordpressServiceClazz));
         }
         return service;
+    }
+    
+    public boolean hasAuthentication() {
+        if(this.configuration != null) {
+            return this.configuration.getAuthentication() != null;
+        }
+        return false;
     }
 
 }

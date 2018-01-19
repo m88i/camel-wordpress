@@ -81,7 +81,7 @@ public interface PagesSPI {
 
     @DELETE
     @Path("/v{apiVersion}/pages/{pageId}")
-    void delete(@PathParam("apiVersion") String apiVersion, 
+    Page delete(@PathParam("apiVersion") String apiVersion, 
                 @PathParam("pageId") int pageId, 
                 @QueryParam("force") boolean force);
 

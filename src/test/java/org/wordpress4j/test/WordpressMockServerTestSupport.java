@@ -54,6 +54,8 @@ public abstract class WordpressMockServerTestSupport {
         
         final Map<String, String> postsSingleUpdateRequestHandlers = new HashMap<String, String>();
         postsSingleUpdateRequestHandlers.put("GET", "/data/posts/single.json");
+        postsSingleUpdateRequestHandlers.put("POST", "/data/posts/update.json");
+        postsSingleUpdateRequestHandlers.put("DELETE", "/data/posts/delete.json");
         
         final Map<String, String> usersListCreateRequestHandlers = new HashMap<>();
         usersListCreateRequestHandlers.put("GET", "/data/users/list.json");

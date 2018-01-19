@@ -1,4 +1,4 @@
-package org.wordpress4j.service.impl;
+package org.wordpress4j.service.impl.ignored;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;

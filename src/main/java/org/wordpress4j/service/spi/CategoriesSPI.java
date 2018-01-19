@@ -69,7 +69,7 @@ public interface CategoriesSPI {
     
     @DELETE
     @Path("/v{apiVersion}/categories/{id}")
-    void delete(@PathParam("apiVersion") String apiVersion, 
+    Category delete(@PathParam("apiVersion") String apiVersion, 
                     @PathParam("id") int categoryId,
                     @QueryParam("force") boolean force);
        

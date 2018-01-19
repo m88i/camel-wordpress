@@ -14,11 +14,17 @@ import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
 import org.apache.camel.util.EndpointHelper;
 import org.apache.camel.util.IntrospectionSupport;
+import org.apache.camel.util.ObjectHelper;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 import org.m88i.camel.component.wordpress.consumer.WordpressPostConsumer;
+import org.m88i.camel.component.wordpress.producer.WordpressPostProducer;
 import org.m88i.camel.component.wordpress.proxy.WordpressOperationType;
+import org.wordpress4j.WordpressAPIConfiguration;
 import org.wordpress4j.WordpressServiceProvider;
+import org.wordpress4j.auth.WordpressBasicAuthentication;
 import org.wordpress4j.model.SearchCriteria;
+
+import com.google.common.base.Strings;
 
 /**
  * Represents a Wordpress endpoint.
@@ -26,24 +32,27 @@ import org.wordpress4j.model.SearchCriteria;
 @UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:operation", label = "Wordpress")
 public class WordpressEndpoint extends DefaultEndpoint {
 
-    public static final String ENDPOINT_SERVICE_POST = "post";
+    public static final String ENDPOINT_SERVICE_POST = "post, author";
 
-    @UriPath(description = "The endpoint operation. Currently, only the 'post' operation is supported.", enums = ENDPOINT_SERVICE_POST)
+    @UriPath(description = "The endpoint operation.", enums = ENDPOINT_SERVICE_POST)
     @Metadata(required = "true")
     private String operation;
 
+    @UriPath(description = "The second part of an endpoint operation. Needed only when endpoint semantic is not enough, like wordpress:post:delete", enums = "delete")
+    private String operationDetail;
+
     @UriParam
-    private WordpressEndpointConfiguration configuration;
-    
+    private WordpressEndpointConfiguration config;
+
     public WordpressEndpoint(String uri, WordpressComponent component, WordpressEndpointConfiguration configuration) {
         super(uri, component);
-        this.configuration = configuration;
+        this.config = configuration;
     }
 
-    public WordpressEndpointConfiguration getConfiguration() {
-        return configuration;
+    public WordpressEndpointConfiguration getConfig() {
+        return config;
     }
-    
+
     public String getOperation() {
         return operation;
     }
@@ -51,13 +60,27 @@ public class WordpressEndpoint extends DefaultEndpoint {
     public void setOperation(String operation) {
         this.operation = operation;
     }
-    
+
+    public String getOperationDetail() {
+        return operationDetail;
+    }
+
+    public void setOperationDetail(String operationDetail) {
+        this.operationDetail = operationDetail;
+    }
+
     public boolean isSingleton() {
         return true;
     }
-    
+
     public Producer createProducer() throws Exception {
-        return new WordpressProducer(this);
+        switch (WordpressOperationType.valueOf(operation)) {
+        case post:
+            return new WordpressPostProducer(this);
+        default:
+            break;
+        }
+        throw new UnsupportedOperationException(String.format("Operation '%s' not supported.", operation));
     }
 
     public Consumer createConsumer(Processor processor) throws Exception {
@@ -76,35 +99,44 @@ public class WordpressEndpoint extends DefaultEndpoint {
 
         // set configuration properties first
         try {
-            if (configuration == null) {
-                configuration = new WordpressEndpointConfiguration();
+            if (config == null) {
+                config = new WordpressEndpointConfiguration();
             }
-            EndpointHelper.setReferenceProperties(getCamelContext(), configuration, options);
-            EndpointHelper.setProperties(getCamelContext(), configuration, options);
-            
-            if(configuration.getSearchCriteria() == null) {
-                final SearchCriteria searchCriteria = WordpressOperationType.valueOf(operation).getCriteriaType().newInstance();
+            EndpointHelper.setReferenceProperties(getCamelContext(), config, options);
+            EndpointHelper.setProperties(getCamelContext(), config, options);
+
+            if (config.getSearchCriteria() == null) {
+                final SearchCriteria searchCriteria = WordpressOperationType.valueOf(operation).getCriteriaType()
+                        .newInstance();
                 Map<String, Object> criteriaOptions = IntrospectionSupport.extractProperties(options, "criteria.");
                 // any property that has a "," should be a List
                 criteriaOptions = criteriaOptions.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> {
-                    if(e != null && e.toString().indexOf(",") > -1) {
+                    if (e != null && e.toString().indexOf(",") > -1) {
                         return Arrays.asList(e.toString().split(","));
                     }
                     return e.getValue();
                 }));
                 IntrospectionSupport.setProperties(searchCriteria, criteriaOptions);
-                configuration.setSearchCriteria(searchCriteria);
+                config.setSearchCriteria(searchCriteria);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage(), e);
         }
         // validate configuration
-        configuration.validate();
+        config.validate();
         this.initServiceProvider();
     }
-    
+
     private void initServiceProvider() {
-        WordpressServiceProvider.getInstance().init(configuration.getUrl(), configuration.getApiVersion());
+        final WordpressAPIConfiguration apiConfiguration = new WordpressAPIConfiguration(config.getUrl(),
+                config.getApiVersion());
+        // basic auth
+        if (ObjectHelper.isNotEmpty(config.getUser())) {
+            apiConfiguration.setAuthentication(
+                    new WordpressBasicAuthentication(config.getUser(), config.getPassword()));
+        }
+
+        WordpressServiceProvider.getInstance().init(apiConfiguration);
     }
-    
+
 }

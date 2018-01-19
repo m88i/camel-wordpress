@@ -9,6 +9,7 @@ import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.Post;
 import org.wordpress4j.model.PostSearchCriteria;
 import org.wordpress4j.service.WordpressServicePosts;
@@ -68,8 +69,13 @@ public class WordpressServicePostsAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
-    protected void doDelete(Integer id, Boolean force) {
-        getSpi().delete(getApiVersion(), id, force);
+    protected Post doDelete(Integer id) {
+       return getSpi().delete(getApiVersion(), id);
+    }
+    
+    @Override
+    protected DeletedModel<Post> doForceDelete(Integer id) {
+        return getSpi().forceDelete(getApiVersion(), id);
     }
 
     @Override

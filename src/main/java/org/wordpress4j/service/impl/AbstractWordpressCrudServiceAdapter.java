@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.SearchCriteria;
 import org.wordpress4j.service.WordpressCrudService;
 
@@ -22,23 +23,35 @@ abstract class AbstractWordpressCrudServiceAdapter<A, T, S extends SearchCriteri
 
     public final T create(T object) {
         checkNotNull(object, "Please define an object to create");
-        return this.doCreate(object); //getSpi().create(this.getApiVersion(), object);
+        return this.doCreate(object);
     }
     
     protected abstract T doCreate(T object);
 
-    public final void delete(Integer id, Boolean force) {
+    public final T delete(Integer id) {
         checkArgument(id > 0, "The id is mandatory");
-        this.doDelete(id, force);
-        //getSpi().delete(this.getApiVersion(), id, force);
+        return this.doDelete(id);
     }
     
-    protected abstract void doDelete(Integer id, Boolean force);
+    public final DeletedModel<T> forceDelete(Integer id) {
+        checkArgument(id > 0, "The id is mandatory");
+        return this.doForceDelete(id);
+    }
+    
+    protected abstract T doDelete(Integer id);
+    
+    protected DeletedModel<T> doForceDelete(Integer id) {
+        final DeletedModel<T> deletedModel = new DeletedModel<>(); 
+        
+        deletedModel.setPrevious(this.doDelete(id));
+        deletedModel.setDeleted(false);
+        
+        return deletedModel;
+    }
 
     public final T update(Integer id, T object) {
         checkNotNull(object, "Please define an object to update");
         checkArgument(id > 0, "The id is mandatory");
-        //return getSpi().update(this.getApiVersion(), id, object);
         return this.doUpdate(id, object);
     }
     

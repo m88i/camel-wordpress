@@ -63,7 +63,7 @@ public interface TagsSPI {
     
     @DELETE
     @Path("/v{apiVersion}/tags/{id}")
-    void delete(@PathParam("apiVersion") String apiVersion,
+    Tag delete(@PathParam("apiVersion") String apiVersion,
                @PathParam("id") Integer id,
                @QueryParam("force") boolean force);
 }

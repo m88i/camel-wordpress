@@ -81,7 +81,7 @@ public interface CommentsSPI  {
 
     @DELETE
     @Path("/v{apiVersion}/comments/{id}")
-    void delete(@PathParam("apiVersion") String apiVersion, 
+    Comment delete(@PathParam("apiVersion") String apiVersion, 
                 @PathParam("id") int id, 
                 @QueryParam("force") boolean force);    
 

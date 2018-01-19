@@ -55,8 +55,8 @@ public class WordpressServiceCommentsAdapter extends AbstractWordpressCrudServic
     }
 
     @Override
-    protected void doDelete(Integer id, Boolean force) {
-        getSpi().delete(getApiVersion(), id, force);
+    protected Comment doDelete(Integer id) {
+        return getSpi().delete(getApiVersion(), id, false);
     }
 
     @Override
