@@ -7,9 +7,13 @@ import org.apache.camel.Processor;
 import org.apache.camel.impl.ScheduledPollConsumer;
 import org.m88i.camel.component.wordpress.WordpressEndpoint;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractWordpressConsumer extends ScheduledPollConsumer {
 
+    protected static final Logger LOG = LoggerFactory.getLogger(AbstractWordpressConsumer.class);
+    
     private WordpressEndpointConfiguration configuration;
 
     public AbstractWordpressConsumer(WordpressEndpoint endpoint, Processor processor) {

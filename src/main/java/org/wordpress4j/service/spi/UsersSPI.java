@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.Order;
 import org.wordpress4j.model.User;
 import org.wordpress4j.model.UserOrderBy;
@@ -70,8 +71,8 @@ public interface UsersSPI {
      * @param reassignId  Reassign the deleted user's posts and links to this user ID.
      */
     @DELETE
-    @Path("/v{apiVersion}/tags/{id}")
-    User delete(@PathParam("apiVersion") String apiVersion,
+    @Path("/v{apiVersion}/users/{id}")
+    DeletedModel<User> delete(@PathParam("apiVersion") String apiVersion,
                @PathParam("id") Integer id,
                @QueryParam("force") boolean force,
                @QueryParam("reassign") Integer reassignId);

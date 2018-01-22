@@ -17,14 +17,14 @@ import org.apache.camel.util.IntrospectionSupport;
 import org.apache.camel.util.ObjectHelper;
 import org.m88i.camel.component.wordpress.config.WordpressEndpointConfiguration;
 import org.m88i.camel.component.wordpress.consumer.WordpressPostConsumer;
+import org.m88i.camel.component.wordpress.consumer.WordpressUserConsumer;
 import org.m88i.camel.component.wordpress.producer.WordpressPostProducer;
+import org.m88i.camel.component.wordpress.producer.WordpressUserProducer;
 import org.m88i.camel.component.wordpress.proxy.WordpressOperationType;
 import org.wordpress4j.WordpressAPIConfiguration;
 import org.wordpress4j.WordpressServiceProvider;
 import org.wordpress4j.auth.WordpressBasicAuthentication;
 import org.wordpress4j.model.SearchCriteria;
-
-import com.google.common.base.Strings;
 
 /**
  * Represents a Wordpress endpoint.
@@ -32,7 +32,7 @@ import com.google.common.base.Strings;
 @UriEndpoint(firstVersion = "2.20.1", scheme = "wordpress", title = "Wordpress", syntax = "wordpress:operation", label = "Wordpress")
 public class WordpressEndpoint extends DefaultEndpoint {
 
-    public static final String ENDPOINT_SERVICE_POST = "post, author";
+    public static final String ENDPOINT_SERVICE_POST = "post, user";
 
     @UriPath(description = "The endpoint operation.", enums = ENDPOINT_SERVICE_POST)
     @Metadata(required = "true")
@@ -77,6 +77,8 @@ public class WordpressEndpoint extends DefaultEndpoint {
         switch (WordpressOperationType.valueOf(operation)) {
         case post:
             return new WordpressPostProducer(this);
+        case user:
+            return new WordpressUserProducer(this);
         default:
             break;
         }
@@ -87,6 +89,8 @@ public class WordpressEndpoint extends DefaultEndpoint {
         switch (WordpressOperationType.valueOf(operation)) {
         case post:
             return new WordpressPostConsumer(this, processor);
+        case user:
+            return new WordpressUserConsumer(this, processor);
         default:
             break;
         }

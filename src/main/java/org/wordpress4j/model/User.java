@@ -1,5 +1,7 @@
 package org.wordpress4j.model;
 
+import static com.google.common.base.MoreObjects.toStringHelper;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -185,6 +187,11 @@ public class User implements Serializable {
 
     public void setMeta(List<Map<String, String>> meta) {
         this.meta = meta;
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper(this).addValue(this.id).addValue(this.username).addValue(this.email).addValue(this.name).toString();
     }
 
 }

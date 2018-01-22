@@ -3,6 +3,7 @@ package org.wordpress4j.service.impl;
 import java.util.List;
 
 import org.wordpress4j.model.Context;
+import org.wordpress4j.model.DeletedModel;
 import org.wordpress4j.model.User;
 import org.wordpress4j.model.UserSearchCriteria;
 import org.wordpress4j.service.WordpressServiceUsers;
@@ -43,8 +44,13 @@ public class WordpressServiceUsersAdapter extends AbstractWordpressCrudServiceAd
     }
 
     @Override
+    protected DeletedModel<User> doForceDelete(Integer id) {
+        return getSpi().delete(getApiVersion(), id, true, 1);
+    }
+
+    @Override
     protected User doDelete(Integer id) {
-        return getSpi().delete(getApiVersion(), id, false, 1);
+        return this.forceDelete(id).getPrevious();
     }
 
     @Override
@@ -56,5 +62,4 @@ public class WordpressServiceUsersAdapter extends AbstractWordpressCrudServiceAd
     protected User doRetrieve(Integer entityID, Context context) {
         return getSpi().retrieve(getApiVersion(), entityID, context);
     }
-
 }

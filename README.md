@@ -52,7 +52,7 @@ And you're set!
 
 `wordpress:post` creates a new post from the `org.wordpress4j.model.Post` class in the message body.  
 `wordpress:post?id=1` updates a post based on data `org.wordpress4j.model.Post` from the message body.  
-`wordpress:post:delete?id=1` deletes a specific post  
+`wordpress:post:delete?id=1` deletes a specific post
 
 ## Authentication
 
@@ -64,16 +64,17 @@ At this time, `camel-wordpress` only supports Basic Authentication (more to come
 
 `from("direct:deletePost").to("wordpress:post:delete?id=9&user=ben&password=password123").to("mock:resultDelete");`
 
-<aside class="warning">
-	It's not recommend to use Basic Authentication in production. If you plan to use this component in production environments, please let me know so I may prioritize this feature in future releases.
-</aside>
+**It's not recommend to use Basic Authentication in production!!**. If you plan to use this component in production environments, please let me know so I may prioritize this feature in future releases.
+
 
 ## Examples
 
-TODO
+TBD
 
 ## Future Releases
 
+- Search for producers, e.g. `to("wordpress:post:search?criteria.name='Ben'")`
 - Custom Namespaces 
 - More Wordpress API operations e.g. Media, Comments, etc.
 - Discovery
+- Custom Converters

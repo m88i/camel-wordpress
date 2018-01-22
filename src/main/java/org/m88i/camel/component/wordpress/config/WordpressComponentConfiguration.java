@@ -16,7 +16,7 @@ public class WordpressComponentConfiguration {
     @Metadata(required = "true")
     private String url;
     @UriParam(defaultValue = WordpressConstants.API_VERSION)
-    private String apiVersion;
+    private String apiVersion = WordpressConstants.API_VERSION;
     @UriParam(description = "The user used to authenticate with Basic Auth")
     private String user;
     @UriParam(description = "The password used to authenticate with Basic Auth")

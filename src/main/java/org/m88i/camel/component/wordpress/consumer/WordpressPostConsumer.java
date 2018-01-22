@@ -1,6 +1,7 @@
 package org.m88i.camel.component.wordpress.consumer;
 
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
 
 import org.apache.camel.Processor;
 import org.m88i.camel.component.wordpress.WordpressEndpoint;
@@ -18,6 +19,11 @@ public class WordpressPostConsumer extends AbstractWordpressConsumer {
 
     public WordpressPostConsumer(WordpressEndpoint endpoint, Processor processor) {
         super(endpoint, processor);
+        servicePosts = WordpressServiceProvider.getInstance().getService(WordpressServicePosts.class);
+    }
+    
+    public WordpressPostConsumer(WordpressEndpoint endpoint, Processor processor, ScheduledExecutorService scheduledExecutorService) {
+        super(endpoint, processor, scheduledExecutorService);
         servicePosts = WordpressServiceProvider.getInstance().getService(WordpressServicePosts.class);
     }
     
