@@ -4,7 +4,7 @@ Camel component for [Wordpress API](https://developer.wordpress.org/rest-api/ref
 
 ## Usage
 
-Currently only the [Posts API](https://developer.wordpress.org/rest-api/reference/posts/#schema) is supported. Stay tuned for further releases. :)
+Currently only the **Posts** and **Author** operations are supported. Stay tuned for further releases. :)
 
 ### Clone & Build
 
@@ -56,7 +56,17 @@ And you're set!
 
 ## Authentication
 
-TODO
+Producers that perform write operations (e.g. create a new post) [must have an authenticated user](https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/) to do so. The standard authentication mechanism used by Wordpress is cookie. Unfortunately this method is not supported outside Wordpress environment because it's rely on [nonce](https://codex.wordpress.org/WordPress_Nonces) internal function.
+
+There's some alternatives to use the Wordpress API without nonces, but requires specific plugin installations.
+
+At this time, `camel-wordpress` only supports Basic Authentication (more to come). To configure it, you must install the [Basic-Auth Wordpress plugin](https://github.com/WP-API/Basic-Auth) and pass the credentials to the endpoint:
+
+`from("direct:deletePost").to("wordpress:post:delete?id=9&user=ben&password=password123").to("mock:resultDelete");`
+
+<aside class="warning">
+	It's not recommend to use Basic Authentication in production. If you plan to use this component in production environments, please let me know so I may prioritize this feature in future releases.
+</aside>
 
 ## Examples
 
@@ -65,4 +75,5 @@ TODO
 ## Future Releases
 
 - Custom Namespaces 
-- More Wordpress API endpoints e.g. Media, Comments, etc.
+- More Wordpress API operations e.g. Media, Comments, etc.
+- Discovery
