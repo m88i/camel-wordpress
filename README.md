@@ -4,13 +4,13 @@ Camel component for [Wordpress API](https://developer.wordpress.org/rest-api/ref
 
 ## Usage
 
-Currently only the **Posts** and **Author** operations are supported. Stay tuned for further releases. :)
+Currently only the **Posts** and **Users** operations are supported. Stay tuned for further releases. :)
 
 ### Clone & Build
 
 Just clone this repo and build it using Maven:
 
-`mvn install`
+`mvn clean install -DskipTests`
 
 Add to your project:
 
