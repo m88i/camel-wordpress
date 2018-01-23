@@ -7,7 +7,7 @@
 	<groupId>org.m88i.camel</groupId>
 	<artifactId>camel-wordpress</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 
 	<name>Camel :: Wordpress</name>
 
