@@ -1,3 +1,6 @@
+**Note:** This component will be available in Apache Camel 2.21.0 out of the box. This repository will no longer be maintained. If you want the most recent version, please switch to Apache Camel.  
+
+
 # Camel Wordpress
 
 Camel component for [Wordpress API](https://developer.wordpress.org/rest-api/reference/). This is a work in progress, but if you are willing for this component, please reach me at ricardozanini at gmail dot com.
